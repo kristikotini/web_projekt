@@ -1,7 +1,10 @@
-<?php
- #<!-- Navbar -->
- echo ('<nav class="navbar navbar-expand-lg navbar-light nav-wrapper"> 
-    <a class="navbar-brand  text-light" href="index.html">Universiteti Shkencave Kompjuterike</a> 
+
+ <!-- Navbar -->
+    
+    
+    <div class="navbar-mask"></div>
+    <nav class="navbar navbar-expand-lg navbar-light nav-wrapper"> 
+    <a class="navbar-brand  text-light" href="index.php">Universiteti Shkencave Kompjuterike</a> 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" 
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> 
         <span class="navbar-toggler-icon"></span> 
@@ -10,7 +13,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent"> 
         <ul class="navbar-nav custom-nav"> 
             <li class="nav-item active"> 
-                <a class="nav-link" href="index.html">Kryefaqe <span class="sr-only">(current)</span></a> 
+                <a class="nav-link" href="index.php">Kryefaqe <span class="sr-only">(current)</span></a> 
             </li> 
             <li class="nav-item"> 
                 <a class="nav-link" href="#">Lajme</a> 
@@ -45,7 +48,23 @@
                 </div> 
             </li> 
             <li class="nav-item"> 
-                <a class="nav-link" href="#">Login</a> 
+                <?php
+                session_start();
+                if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+                    if($_SESSION["roli"] === 0){
+                        echo("<a class='nav-link' href='admin.php'>Profili Admin</a>");
+                    }
+                    if($_SESSION["roli"] === 1){
+                        echo("<a class='nav-link' href='pedagog.php'>Profili Pedagog</a>");
+                    }
+                    if($_SESSION["roli"] === 2){
+                        echo("<a class='nav-link' href='student.php'>Profili Student</a>");
+                    }
+                }
+                else{
+                    echo("<a class='nav-link' href='login.php'>Login</a>");
+                }
+                ?> 
             </li> 
         </ul>
         <form class="form-inline my-2 my-lg-0"> 
@@ -54,7 +73,4 @@
                     class="fa fa-search nav-search"></i></button> 
         </form> 
     </div> 
-</nav> ');
-
-
-?>
+</nav> 

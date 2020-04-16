@@ -1,5 +1,4 @@
-<?php 
-echo('    <!DOCTYPE html>
+<!DOCTYPE html>
     <html lang="en">
 
     <head>
@@ -15,9 +14,11 @@ echo('    <!DOCTYPE html>
         <link rel="stylesheet" href="assets/css/font-awesome/css/font-awesome.css">
     </head>
 
-    <body>');
+    <body>
+    <?php
     include 'header.php';
-echo('    <!-- Banner -->
+   ?>
+    <!-- Banner -->
     <img class="img-fluid home-banner" src="assets\images\uni-banner.jpg">
     <!-- Main Body-->
     <!-- Slogan-->
@@ -119,11 +120,11 @@ echo('    <!-- Banner -->
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
         </a>
-    </div>');
+    </div>
+    <?php
     include 'footer.php';
-    
-echo('</body>
+    ?>
+</body>
 
-</html>');
+</html>
 
-?>

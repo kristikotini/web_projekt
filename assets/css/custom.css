@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap');
 
-
+html, body {
+    height: 100%;
+}
 .nav-wrapper {
     background-color : #b1040e;
     z-index: 10;
@@ -50,7 +52,27 @@ a:hover{
     font-size: 45px;
     font-family:'Libre Baskerville', serif ;
 }
-
+.btn-login{
+    background-color: #8E040E;
+    border-color: #8E040E;
+}
+.btn-login:hover{
+    background-color: #b1040e;
+    border-color: #b1040e;
+}
+.navbar-mask{
+    height: 56px;
+}
+.page-wrapper{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.login-card{
+    background-color: rgba(0,0,0,0.5);
+    color:white;
+    font-weight: bold;
+}
 
 /*---Media Queries --*/
 @media (max-width: 992px) {

@@ -1,6 +1,4 @@
-<?php
-
-echo('<!-- Footer -->
+<!-- Footer -->
 <footer class="page-footer font-small mdb-color lighten-3 pt-4 footer-custom">
     <!-- Footer Links -->
     <div class="container text-center text-md-left">
@@ -11,10 +9,7 @@ echo('<!-- Footer -->
                 <!-- Content -->
                 <h5 class="font-weight-bold text-uppercase mb-4">Permbledhje</h5>
                 <p>Universiteti i Shkencave Kompjuterike është një ndër universitet më me emër në Ballkan.</p>
-                <p>Stafi i dedikuar dhe kushtet moderne, bëjn të mundur që cdo student të mund të marri maksimumin
-                    e mundshëm. Fusha e AI/ML janë fokusi kryesor në këtë universitet,
-                    fusha në të cilat jan arritur
-                    vlersimet më të larta.
+                <p>Fusha e AI/ML janë fokusi kryesor në këtë universitet.
                 </p>
             </div>
             <!-- Grid column -->
@@ -88,8 +83,7 @@ echo('<!-- Footer -->
         </div>
     </div>
     <!-- Copyright -->
-    <div class="footer-copyright text-center py-3" footer-links>©' . date("Y") . 'Copyright:
-        <a class=" footer-links" href="index.html"> Universiteti Shkencave Kompjuterike | Runtime Error</a>
+    <div class="footer-copyright text-center py-3" footer-links>© <?php echo( "".date("Y")); ?> Copyright:
+        <a class=" footer-links" href="index.php"> Universiteti Shkencave Kompjuterike | Runtime Error</a>
     </div>
-</footer> ');
-?>
+</footer> 
