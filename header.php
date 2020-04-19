@@ -22,30 +22,24 @@
                 <a class="nav-link" href="#">Rreth Nesh</a> 
             </li> 
             <li class="nav-item dropdown "> 
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"  
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
-                    Programe 
-                </a> 
-                <div class="dropdown-menu dropright" aria-labelledby="navbarDropdown">  
-                    <a class="dropdown-item dropdown-toggle" href="#" id="navbarDropdown2" role="button" 
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
-                        Bachelor 
-                    </a> 
-                    <div class="dropdown-menu " aria-labelledby="navbarDropdown2"> 
-                        <a class="dropdown-item " href="#">Informatik Bachelor</a> 
-                        <a class="dropdown-item " href="#">TIK Bachelor</a> 
-                    </div> 
-                    <div class="dropdown-divider"></div> 
-
-                    <a class="dropdown-item dropdown-toggle" href="#" id="navbarDropdown3" role="button" 
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
-                        Master 
-                    </a> 
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown3"> 
-                        <a class="dropdown-item " href="#">Informatik MSc.</a> 
-                        <a class="dropdown-item " href="#">TIK MSc.</a> 
-                    </div> 
-                </div> 
+                <a class="nav-link dropdown-toggle" href="#" type="button" data-toggle="dropdown">Programe</a>
+                <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                    <li class="dropdown-submenu dropright">
+                        <a class="dropdown-item test" href="#">Bachelor <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Informatik</a></li>
+                            <li><a class="dropdown-item" href="#">TIK</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown-submenu dropright">
+                        <a class="dropdown-item test" href="#">Master <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Informatik MSc.</a></li>
+                            <li><a class="dropdown-item" href="#">TIK MSc.</a></li>
+                        </ul>
+                    </li>
+                </ul>
             </li> 
             <li class="nav-item"> 
                 <?php
@@ -74,3 +68,12 @@
         </form> 
     </div> 
 </nav> 
+<script>
+$(document).ready(function(){
+  $('.dropdown-submenu a.test').on("click", function(e){
+    $(this).next('ul').toggle();
+    e.stopPropagation();
+    e.preventDefault();
+  });
+});
+</script>
