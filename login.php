@@ -16,10 +16,18 @@
 </head>
 
 <body >
+
     <div class="page-wrapper">
     <!--Navbar-->
 <?php
     include "header.php";
+
+ 
+ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+     header("location: index.php");
+     exit;
+ }
+ 
 ?>
 <!--Login Form-->
 <div class="d-flex align-items-center justify-content-center flex-grow-1" style="background-image: url(assets/images/uni-banner.jpg);">
@@ -42,6 +50,22 @@
                             </div>
                             <button class="btn btn-lg btn-primary btn-block text-uppercase mt-4 btn-login" type="submit">Sign
                                 in </button>
+                            <?php
+                                
+                                if(isset($_SESSION["password_err"])){
+                                    $msg =implode($_SESSION["password_err"]) ;
+                                    echo($msg);
+                                }
+                                    else if(isset($_SESSION["username_err"])){
+                                        $msg =implode($_SESSION["username_err"]);
+                                        echo($msg);
+                                    }else if(isset($_SESSION["sql_err"])){
+                                        $msg =implode($_SESSION["sql_err"]);
+                                        echo($msg);
+                                    }
+                                    session_unset();
+
+                            ?>
                         </form>
                     </div>
                 </div>

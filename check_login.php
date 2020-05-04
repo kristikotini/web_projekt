@@ -1,5 +1,10 @@
 <?php
-
+session_start();
+ 
+if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+    header("location: index.php");
+    exit;
+}
 //Lidhja me database
 require_once "db_connection.php";
  
@@ -9,15 +14,17 @@ $username_err = $password_err = "";
 if($_SERVER["REQUEST_METHOD"] == "POST"){
  
     if(empty(trim($_POST["inputEmailUsername"]))){
-        $username_err = "Please enter username.";
+        $_SESSION["username_err"] = "Please enter username.";
+        header("location:login.php");
     } else{
-        $username = trim($_POST["inputEmailUsername"]);
+        $username = ($_POST["inputEmailUsername"]);
     }
     
-    if(empty(trim($_POST["inputPassword"]))){
-        $password_err = "Please enter your password.";
+    if(empty($_POST["inputPassword"])){
+        $_SESSION["password_err"] = "Please enter your password.";
+        header("location:login.php");
     } else{
-        $password = trim($_POST["inputPassword"]);
+        $password = ($_POST["inputPassword"]);
     }
     
     if(empty($username_err) && empty($password_err)){
@@ -31,7 +38,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 if($stmt->num_rows == 1){                    
                     $stmt->bind_result($id, $username, $hashed_password,$email,$roli);
                     if($stmt->fetch()){
-                        if($password == $hashed_password){
+                        if(password_verify ( $password , $hashed_password )){
                             session_start();
                              // Ruajta variablave ne session
                             $_SESSION["loggedin"] = true;
@@ -40,21 +47,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             header("location: index.php");
                         } else{
                             // Password gabim
-                            echo ("Password gabim.");
-                            sleep(2);
+                            $_SESSION["password_err"] = array("Password gabim.");
                             header("location:login.php");
                         }
                     }
                 } else{
                     // Username ose Email gabim
-                    echo ("Username ose Email gabim.");
-                    sleep(2);
+                    $_SESSION["username_err"] = array("Username ose Email gabim.");
                     header("location:login.php");
                 }
             } else{
                 //Gabim ne query
-                echo ("Oops gabim gjate procedimit.");
-                sleep(2);
+                $_SESSION["sql_err"] =array("Oops gabim gjate procedimit.");
                 header("location:login.php");
             }
 

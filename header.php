@@ -43,21 +43,21 @@
             </li> 
             <li class="nav-item"> 
                 <?php
-                session_start();
-                if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-                    if($_SESSION["roli"] === 0){
-                        echo("<a class='nav-link' href='admin.php'>Profili Admin</a>");
+                    session_start();
+                    if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+                        if($_SESSION["roli"] === 0){
+                            echo("<a class='nav-link' href='admin.php'>Profili Admin</a>");
+                        }
+                        if($_SESSION["roli"] === 1){
+                            echo("<a class='nav-link' href='pedagog.php'>Profili Pedagog</a>");
+                        }
+                        if($_SESSION["roli"] === 2){
+                            echo("<a class='nav-link' href='student.php'>Profili Student</a>");
+                        }
                     }
-                    if($_SESSION["roli"] === 1){
-                        echo("<a class='nav-link' href='pedagog.php'>Profili Pedagog</a>");
+                    else{
+                        echo("<a class='nav-link' href='login.php'>Login</a>");
                     }
-                    if($_SESSION["roli"] === 2){
-                        echo("<a class='nav-link' href='student.php'>Profili Student</a>");
-                    }
-                }
-                else{
-                    echo("<a class='nav-link' href='login.php'>Login</a>");
-                }
                 ?> 
             </li> 
         </ul>
