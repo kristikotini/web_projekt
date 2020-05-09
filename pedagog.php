@@ -10,8 +10,8 @@
     <script src="assets\fonts\all.min.js"></script>
     <link rel="stylesheet" href="assets/css/custom.css">
     <link rel="stylesheet" href="assets/css/font-awesome/css/font-awesome.css">
-    <script type="text/javascript" src="pedagog.js"></script>
-
+    <script type="text/javascript" src="js/pedagog.js"></script>
+    
    <title>Pedagog</title>
    <style>
     
@@ -22,6 +22,9 @@
     </style>
 </head>
 <body >
+<?php
+    include 'header.php';
+  ?>
   <div class="container-fluid" >
     <div class="row">
       <div class="col-3" >
@@ -39,7 +42,7 @@
           If there is no God, everything is permitted.</i>  </p>
 
       </div>
-      <div class="col-2" style="background-color: rgb(187, 31, 31); color: whitesmoke; ">
+      <div class="col-2 mt-3" style="background-color: rgb(187, 31, 31); color: whitesmoke; ">
         <h5 class="pt-3 font-weight-light">Aktiviteti mesimor</h5><hr>
         <div >
            <ul>
@@ -126,7 +129,7 @@
     </div>
      
 
-     <div class="col-2"  style="background-color: rgb(187, 31, 31)">
+     <div class="col-2 mb-3"  style="background-color: rgb(187, 31, 31)">
        <div class="pt-3 mt-3">
         <div >
           <ul>
@@ -152,9 +155,9 @@
 
        </div>
 
-        <a href="#" class="btn btn-outline-danger btn-block  mt-5 mb-5" >Ngarko nota</a>
+        <a href="nota.php" class="btn btn-outline-danger btn-block  mt-5 mb-5" >Ngarko nota</a>
        </div>
-       <div class="pt-3 mt-3" style="position: absolute; bottom: 0; right: 15px; color: whitesmoke;">
+       <div class="pt-3 mt-3 " style="position: absolute; bottom: 0; right: 15px; color: whitesmoke;">
          <p><a href="#"  style="color: whitesmoke;">Settings</a></p>
         
        </div>
@@ -167,7 +170,9 @@
     </div>
 
   </div>
-
+  <?php
+    include 'footer.php';
+  ?>
 
 
 </body>
