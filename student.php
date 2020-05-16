@@ -37,8 +37,10 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-3">
-        <img src="student.png" class="rounded" alt="Student logo" width="304" height="236"> 
+        <!--<div class="col-sm-8">-->
+        <!--</div>-->
+        <div class="col-sm-4">
+        <img src="assets\images\student.png" class="float-left rounded" alt="Student logo" width="100" height="100"> 
 
         <div id="te_dhena">
         <?php
@@ -113,6 +115,7 @@
     </div>
 </div>
 
+<div class="container">
 
 <br>
     </div id="mesatarja">
@@ -134,11 +137,12 @@
             
         ?>
     </div>
-
+</div>
+<div class="container ">
     <div id="logout">
-        <button ><a href="log_out.php">LogOut</a></button>
+        <button  class="btn btn-dark " ><a href="log_out.php">LogOut</a></button>
     </div>
-
+</div>
 
 
 <br>
