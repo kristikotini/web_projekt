@@ -15,11 +15,25 @@
     </head>
 
     <body>
+    <!-- fillimi i sesionit dhe kontrollimi i rolit -->
+    
     <?php
+      session_start();
+     if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION["roli"]!=2){
+         
+             header("location:index.php");
+             exit();
+         }
+         else if(!isset($_SESSION["loggedin"])){
+            header("location:index.php");
+            exit();
+        }
+    
+         
     include 'header.php';
     include 'db_connection.php';
     ?>
-
+<br>
     <div id="te_dhena">
         <?php
             $id=$_SESSION["id"];
@@ -40,8 +54,8 @@
             $result2=mysqli_query($conn,$sql2);
         
             while($row=mysqli_fetch_array($result2,MYSQLI_ASSOC)){
-                echo "<p> Grupi:".$row["grupi"]." "."Regjistruar me: ".
-                $row["data_regjistrim"]." ".$row["emer"]." ".$row["nivel"]." Ne vitin: ". $row["viti_std"]."</p>";
+                echo "<p> Grupi: ".$row["grupi"].", "."Regjistruar me: ".
+                $row["data_regjistrim"].", ".$row["emer"].", ".$row["nivel"].", Ne vitin: ". $row["viti_std"]."</p>";
                 $program=$row["id_programi_fk"];
             }
 
@@ -78,11 +92,29 @@
             echo "</table>";
         ?>
     </div>
+<br>
+    </div id="mesatarja">
+        <?php
+            $mesatarja;
+            $shuma=0;
+            $kredite=0;
+            for($i=1;$i<sizeof($lendetarr);$i++){
+                if($lendetarr[$i][4]!=""){
+                    $shuma=$shuma+($lendetarr[$i][2]*$lendetarr[$i][4]);
+                    $kredite+=$lendetarr[$i][2];
+                }
+            }
+
+            if($kredite>0){
+                $mesatarja=$shuma/$kredite;
+                echo "<p>Mesatarja e ponderuar: ".$mesatarja."</p>";
+            }
+            
+        ?>
+    </div>
 
 
-
-
-
+<br>
 
    <?php
     include 'footer.php';
