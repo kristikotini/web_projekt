@@ -20,6 +20,7 @@
     <div class="page-wrapper">
     <!--Navbar-->
 <?php
+    session_start();
     include "header.php";
 
  

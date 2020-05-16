@@ -19,7 +19,7 @@
                 <a class="nav-link" href="#">Lajme</a> 
             </li> 
             <li class="nav-item"> 
-                <a class="nav-link" href="#">Rreth Nesh</a> 
+                <a class="nav-link" href="about.php">Rreth Nesh</a> 
             </li> 
             <li class="nav-item dropdown "> 
                 <a class="nav-link dropdown-toggle" href="#" type="button" data-toggle="dropdown">Programe</a>
@@ -43,7 +43,6 @@
             </li> 
             <li class="nav-item"> 
                 <?php
-                    session_start();
                     if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
                         if($_SESSION["roli"] === 0){
                             echo("<a class='nav-link' href='admin.php'>Profili Admin</a>");
