@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Home</title>
+        <title>Profil Student</title>
         <link rel="stylesheet" href="assets/css/bootstrap/bootstrap.css">
         <script src="assets\js\jquery-3.4.1.min.js"></script>
         <script src="assets\js\popper.min.js"></script>
@@ -34,7 +34,13 @@
     include 'db_connection.php';
     ?>
 <br>
-    <div id="te_dhena">
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3">
+        <img src="student.png" class="rounded" alt="Student logo" width="304" height="236"> 
+
+        <div id="te_dhena">
         <?php
             $id=$_SESSION["id"];
 
@@ -61,15 +67,19 @@
 
         ?>   
     </div>
-
-
+        </div>
+    </div>
+</div>
+    
+<div class="container">
     <div id="tab_nota">
         <h3>Struktura akademike</h3>
         <?php
             $sql3="SELECT emer,viti_lendes,kredite,kohezgjatja,nota.nota
                    FROM lenda LEFT JOIN nota
                    ON nota.id_perdorues_fk=$id AND lenda.id_lende=nota.id_lende_fk
-                   WHERE lenda.id_programi_fk=$program";
+                   WHERE lenda.id_programi_fk=$program
+                   ORDER BY lenda.viti_lendes ";
             $result3=mysqli_query($conn,$sql3);
 
             $lendetarr=array();
@@ -79,8 +89,17 @@
                  array_push($lendetarr,array($row["emer"],$row["viti_lendes"],$row["kredite"],$row["kohezgjatja"],$row["nota"]));
             }
             
-            echo "<table border=1px>";
-              for($i=0;$i<sizeof($lendetarr);$i++){
+            echo " <table class='table '>";
+                echo "<thead class='thead-dark'>";
+                echo "<tr>";
+                for($j=0;$j<sizeof($lendetarr[0]);$j++){
+                    echo "<th>";
+                    echo $lendetarr[0][$j];
+                    echo "</th>";
+                }
+                echo "</tr>";
+                echo "</thead>";
+              for($i=1;$i<sizeof($lendetarr);$i++){
                   echo "<tr>";
                   for($j=0;$j<sizeof($lendetarr[0]);$j++){
                       echo "<td>";
@@ -92,6 +111,9 @@
             echo "</table>";
         ?>
     </div>
+</div>
+
+
 <br>
     </div id="mesatarja">
         <?php
@@ -112,6 +134,11 @@
             
         ?>
     </div>
+
+    <div id="logout">
+        <button ><a href="log_out.php">LogOut</a></button>
+    </div>
+
 
 
 <br>
