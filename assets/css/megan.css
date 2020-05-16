@@ -1,0 +1,15 @@
+#mesatarja{
+    text-align: right;
+}
+.bt1{
+    background-color: #8E040E;
+    border-color: #8E040E;
+    size: 20px;
+}
+.bt1:hover{
+    background-color: #b1040e;
+    border-color: #b1040e;
+}
+.abtt{
+    color: white;
+}

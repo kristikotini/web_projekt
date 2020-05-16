@@ -11,6 +11,7 @@
         <script src="assets\js\bootstrap.min.js"></script>
         <script src="assets\fonts\all.min.js"></script>
         <link rel="stylesheet" href="assets/css/custom.css">
+        <link rel="stylesheet" href="assets/css/megan.css">
         <link rel="stylesheet" href="assets/css/font-awesome/css/font-awesome.css">
     </head>
 
@@ -35,7 +36,7 @@
     ?>
 <br>
 
-<div class="container">
+<div class="container text-center">
     <div class="row">
      
         <div id="te_dhena">
@@ -77,20 +78,21 @@
             $result2=mysqli_query($conn,$sql2);
         
             while($row=mysqli_fetch_array($result2,MYSQLI_ASSOC)){
-                echo "<p class='float-right'> Grupi: ".$row["grupi"].", "."Regjistruar me: ".
-                $row["data_regjistrim"].", ".$row["emer"].", ".$row["nivel"].", Ne vitin: ". $row["viti_std"]."</p>";
+                echo "<h6>Grupi: ".$row["grupi"].", "."Regjistruar me: ".
+                $row["data_regjistrim"].", ".$row["emer"].", ".$row["nivel"].", Ne vitin: ". $row["viti_std"]."</h6>";
                 $program=$row["id_programi_fk"];
             }
 
         ?> 
+        
         </div>  
         
     </div>
 </div>
     
-<div class="container">
+<div class="container text-center">
     <div id="tab_nota">
-        <h3 class="fluid-center">Struktura akademike</h3>
+        <h3>Struktura akademike</h3>
         <?php
         $akm=1;
             $sql3="SELECT emer,viti_lendes,kredite,kohezgjatja,nota.nota
@@ -201,8 +203,7 @@
 
 <div class="container">
 
-<br>
-    </div id="mesatarja">
+    </div  >
         <?php
             $mesatarja;
             $shuma=0;
@@ -216,21 +217,16 @@
 
             if($kredite>0){
                 $mesatarja=$shuma/$kredite;
-                echo "<p>Mesatarja e ponderuar: ".$mesatarja."</p>";
+                echo "<h5 id='mesatarja'>Mesatarja e ponderuar: ".$mesatarja."</h5>";
             }
             
         ?>
     </div>
 </div>
-<div class="container ">
-    <div id="logout">
-        <button  class="btn btn-dark " ><a href="log_out.php">LogOut</a></button>
-    </div>
+<div class="container">
+  <button  class="btn btn-primary bt1" ><a class="abtt" href="log_out.php">LogOut</a></button>
+  <button  class="btn btn-primary bt1" ><a class="abtt" href="settings.php">Settings</a></button>
 </div>
-
-
-<br>
-
    <?php
     include 'footer.php';
     ?>
