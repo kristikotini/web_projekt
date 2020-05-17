@@ -12,7 +12,7 @@ $datelindje = $_POST['date'];
 $username = $_POST['username'];
 $email = $_POST['email'];
 $password = password_hash( $_POST['password'], PASSWORD_DEFAULT);
-$roli = $_POST['role'];
+$roli = 1;
 $id_programi = $_POST['programid'];
 $grada = $_POST['level'];
 $adresa = $_POST['address'];
@@ -66,7 +66,7 @@ $flag1 = $conn->query($result1);
         
         //Duplicate entry 'klaudia.musollari' for key 'username'
         //Duplicate entry 'klaudia.b@ushkpedagog.info' for key 'email'
-        if ($conn->error=="Duplicate entry 'klaudia.musollari' for key 'username'"){
+        if ($conn->error=="Duplicate entry".$username."for key 'username'"){
             echo header('location:admin.php');
             $_SESSION['response']="Username ekziston!";
             $_SESSION['res_type']="danger";
@@ -77,9 +77,80 @@ $flag1 = $conn->query($result1);
             $_SESSION['response']="Email ekziston!";
             $_SESSION['res_type']="danger";
         }
-      }
+      }}
+
+        if(isset($_GET['shikomeshume'])){
+        $id=$_GET['shikomeshume'];
+        $selectpedagog = "SELECT id_pedagog_fk, id_programi_fk, grada, adresa, website, tel FROM pedagog WHERE id_pedagog_fk='$id'";
+        $result = $conn->query($selectpedagog);
+       {
+        if ($result && $result->num_rows > 0) {
+          while($row = $result->fetch_assoc()) {
+            echo "id: " . $row["id_pedagog_fk"]. " - idprogrami: " . $row["id_programi_fk"]. " - grada" . $row["grada"]. " - adresa ".$row["adresa"];
+          }} 
+          else {
+          echo "0 results";
+         }  
+       }}
 
 
 
-}
+      if(isset($_GET['delete'])){
+        $id=$_GET['delete'];
+        $deletepedagog = "DELETE FROM pedagog WHERE id_pedagog_fk='$id'";
+          if($conn -> query($deletepedagog)==TRUE)
+            {
+              $deleteperdorues = "DELETE FROM perdorues WHERE perdorues_id='$id'";
+                if($conn -> query($deleteperdorues)==TRUE){
+                header('location:admin.php');
+                $_SESSION['response']="Perdoruesi u fshi!";
+                $_SESSION['res_type']="danger"; }
+                else {
+                  echo $conn->error;}
+            }
+         }
+      else{
+            echo $conn->error;}
+
+          
+              if(isset($_GET['edit'])){  $id=$_GET['edit'];
+                          $emer = $row['name'];
+                          $mbiemer = $row['lastname'];
+                          $gjini = $row['gender'];
+                          $datelindje = $row['date'];
+                          $username = $row['username'];
+                          $email = $row['email'];
+                          $password = password_hash( $row['password'], PASSWORD_DEFAULT);
+                          $roli = 1;
+                          $id_programi = $row['programid'];
+                        
+                          $adresa = $row['address'];
+                          $website = $row['website'];
+                          $tel = $row['phone'];
+                          
+                          $selectperd = "SELECT * FROM perdorues WHERE perdorues_id='$id'";
+                          $result = $conn -> query($selectperd);
+                                       if ($result->num_rows > 0){     
+                                           while($row = $result->fetch_assoc()){ 
+                                           $selectped = "SELECT * FROM pedagog WHERE id_pedagog_fk='$id'";
+                                            if($conn -> query($selectped)==TRUE) 
+                                            $result1 = $conn -> query($selectped);
+                                            if($result1)
+                                              {
+                                                  echo " query successful";
+                                                  header('location:admin.php');
+                                                $_SESSION['response']="Databaza u plotesua me sukses!";
+                                                $_SESSION['res_type']="success";
+                                              }
+                         
+                   
+                    }}}
+            
+                  
+            
+
+     
+      
+    
+
 ?>
