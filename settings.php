@@ -35,20 +35,41 @@
     </div>
    <div class="container">
        <div class="row">
-            <form>
+            <form method='POST' action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
             Vendosni password-in aktual:<br>
-            <input type='text' id='passvj'><br>
+            <input type="text" id='passvj' name="pasi_vjeter"><br>
             Vendosni password-in e ri:<br>
-            <input type='text' id='passri'><br>
+            <input type='text' id='passri' name='pasi_ri'><br>
             Konfirmoni password-in e ri:<br>
-            <input type='text' id='passrikonf'><br><br>
-            <input type='submit' value='Ndrysho'><br><br>
+            <input type='text' id='passrikonf' name='pasi_ri_konf'><br><br>
+            <input type='submit' value='Ndrysho' ><br><br>
             </form>
         </div>
     </div>
 
     <?php
-    
+         $id=$_SESSION["id"];
+         if ($_SERVER["REQUEST_METHOD"] == "POST"){
+            $pv= $_POST["pasi_vjeter"];
+            $sql1="SELECT password
+            FROM perdorues
+            WHERE perdorues.perdorues_id=$id";
+            $result1=mysqli_query($conn,$sql1);
+
+            if(empty($_POST["inputPassword"])){
+                header('location:settings.php');
+                    $_SESSION['response']="Please enter your password.";
+                    $_SESSION['res_type']="success";
+            }
+
+            while($row=mysqli_fetch_array($result1,MYSQLI_ASSOC)){
+             if($row!='' && $row!=$pv){
+              echo "<p>pasii gabim</p>";
+            }
+        }
+         }
+
+         
     ?>
     
 
