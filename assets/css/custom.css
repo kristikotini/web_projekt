@@ -73,6 +73,20 @@ a:hover{
     color:white;
     font-weight: bold;
 }
+.misioni{
+    padding: 40px;
+    text-align: center;
+}
+.map{
+    height: 500px;
+    padding: 3px;
+}
+.stafi-links{
+    color: #8E040E;
+}
+.stafi-links:hover{
+    color: black !important;
+}
 
 /*---Media Queries --*/
 @media (max-width: 992px) {
