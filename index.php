@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Home</title>
+        <title>Kryefaqe</title>
         <link rel="stylesheet" href="assets/css/bootstrap/bootstrap.css">
         <script src="assets\js\jquery-3.4.1.min.js"></script>
         <script src="assets\js\popper.min.js"></script>
