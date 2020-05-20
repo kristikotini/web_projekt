@@ -3,15 +3,6 @@
 
 include 'db_connection.php';
 
-     //$password = password_hash( $_POST['password'], PASSWORD_DEFAULT);
-    // if($flag2)
-    //               {
-    //                   echo " query successful";
-    //                   header('location:admin.php');
-    //                 $_SESSION['response']="Databaza u plotesua me sukses!";
-    //                 $_SESSION['res_type']="success";
-    //               }
-
     
        if(isset($_POST['ndrysho'])){
            if(empty($_POST['pasi_vjeter'])){
