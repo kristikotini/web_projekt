@@ -11,6 +11,7 @@
         <script src="assets\js\bootstrap.min.js"></script>
         <script src="assets\fonts\all.min.js"></script>
         <link rel="stylesheet" href="assets/css/custom.css">
+        <link rel="stylesheet" href="assets/css/megan.css">
         <link rel="stylesheet" href="assets/css/font-awesome/css/font-awesome.css">
     </head>
 
@@ -35,25 +36,40 @@
     ?>
 <br>
 
-<div class="container-fluid">
+<div class="container text-center">
     <div class="row">
-        <!--<div class="col-sm-8">-->
-        <!--</div>-->
-        <div class="col-sm-4">
-        <img src="assets\images\student.png" class="float-left rounded" alt="Student logo" width="100" height="100"> 
-
+     
         <div id="te_dhena">
         <?php
             $id=$_SESSION["id"];
 
-            $sql1="SELECT emer,mbiemer
+            $sql1="SELECT emer,mbiemer,gjini
                   FROM perdorues
                   WHERE perdorues.perdorues_id=$id";
             $result1=mysqli_query($conn,$sql1);
 
             while($row=mysqli_fetch_array($result1,MYSQLI_ASSOC)){
-                echo "<h2>".$row["emer"]." ".$row["mbiemer"]."</h2>";
+                $emri=$row["emer"];
+                $mbiemri=$row["mbiemer"];
+                $gjini=$row["gjini"];
             }
+        ?>
+        <div class="col-md-2 float-left">
+        <?php
+            if($gjini=='f'){
+                echo "<img src='assets\images\student.png' class=' rounded' alt='Student logo' width='100' height='100'> ";
+            }
+            else{
+                echo "<img src='assets\images\student1.png' class=' rounded' alt='Student logo' width='100' height='100'> ";
+            }
+        ?>
+        </div>
+
+        <div class="col-md-10 float-right">
+        <?php
+
+            echo "<h2>".$emri." ".$mbiemri."</h2>";
+
 
             $sql2="SELECT grupi,data_regjistrim,program.emer,program.nivel,viti_std,id_programi_fk
                   FROM student JOIN program
@@ -62,21 +78,23 @@
             $result2=mysqli_query($conn,$sql2);
         
             while($row=mysqli_fetch_array($result2,MYSQLI_ASSOC)){
-                echo "<p> Grupi: ".$row["grupi"].", "."Regjistruar me: ".
-                $row["data_regjistrim"].", ".$row["emer"].", ".$row["nivel"].", Ne vitin: ". $row["viti_std"]."</p>";
+                echo "<h6>Grupi: ".$row["grupi"].", "."Regjistruar me: ".
+                $row["data_regjistrim"].", ".$row["emer"].", ".$row["nivel"].", Ne vitin: ". $row["viti_std"]."</h6>";
                 $program=$row["id_programi_fk"];
             }
 
-        ?>   
-    </div>
-        </div>
+        ?> 
+        
+        </div>  
+        
     </div>
 </div>
     
-<div class="container">
+<div class="container text-center">
     <div id="tab_nota">
         <h3>Struktura akademike</h3>
         <?php
+        $akm=1;
             $sql3="SELECT emer,viti_lendes,kredite,kohezgjatja,nota.nota
                    FROM lenda LEFT JOIN nota
                    ON nota.id_perdorues_fk=$id AND lenda.id_lende=nota.id_lende_fk
@@ -85,6 +103,7 @@
             $result3=mysqli_query($conn,$sql3);
 
             $lendetarr=array();
+            echo "<h4>Viti i pare</h4>";
             array_push($lendetarr,array("Emri i lendes","Viti","Kredite","Kohezgjatja","Nota"));
 
             while($row=mysqli_fetch_array($result3,MYSQLI_BOTH)){
@@ -101,7 +120,9 @@
                 }
                 echo "</tr>";
                 echo "</thead>";
+
               for($i=1;$i<sizeof($lendetarr);$i++){
+                  
                   echo "<tr>";
                   for($j=0;$j<sizeof($lendetarr[0]);$j++){
                       echo "<td>";
@@ -109,16 +130,80 @@
                       echo "</td>";
                   }
                   echo "</tr>";
+                  if($lendetarr[$i][1]!=$lendetarr[$i+1][1]){
+                    $vazhd=$i+1;
+                    break;
+                }
               }
             echo "</table>";
+
+            echo "<h4>Viti i dyte</h4>";
+
+            echo " <table class='table '>";
+                echo "<thead class='thead-dark'>";
+                echo "<tr>";
+                for($j=0;$j<sizeof($lendetarr[0]);$j++){
+                    echo "<th>";
+                    echo $lendetarr[0][$j];
+                    echo "</th>";
+                }
+                echo "</tr>";
+                echo "</thead>";
+
+              for($i=$vazhd;$i<sizeof($lendetarr);$i++){
+                  
+                  echo "<tr>";
+                  for($j=0;$j<sizeof($lendetarr[0]);$j++){
+                      echo "<td>";
+                      echo $lendetarr[$i][$j];
+                      echo "</td>";
+                  }
+                  echo "</tr>";
+                  if( ($i+1)!=sizeof($lendetarr) && $lendetarr[$i][1]!=$lendetarr[$i+1][1] ){
+                    $vazhd=$i+1;
+                    $akm=0;
+                    break;
+                }
+              }
+            echo "</table>";
+
+            if($akm==0){
+
+                echo "<h4>Viti i trete</h4>";
+
+                echo " <table class='table '>";
+                    echo "<thead class='thead-dark'>";
+                    echo "<tr>";
+                    for($j=0;$j<sizeof($lendetarr[0]);$j++){
+                        echo "<th>";
+                        echo $lendetarr[0][$j];
+                        echo "</th>";
+                    }
+                    echo "</tr>";
+                    echo "</thead>";
+    
+                  for($i=$vazhd;$i<sizeof($lendetarr);$i++){
+                      
+                      echo "<tr>";
+                      for($j=0;$j<sizeof($lendetarr[0]);$j++){
+                          echo "<td>";
+                          echo $lendetarr[$i][$j];
+                          echo "</td>";
+                      }
+                      echo "</tr>";
+                   
+                  }
+                echo "</table>";
+
+            }
+           
         ?>
     </div>
 </div>
 
 <div class="container">
 
-<br>
-    </div id="mesatarja">
+    </div  >
         <?php
             $mesatarja;
             $shuma=0;
@@ -132,21 +217,16 @@
 
             if($kredite>0){
                 $mesatarja=$shuma/$kredite;
-                echo "<p>Mesatarja e ponderuar: ".$mesatarja."</p>";
+                echo "<h5 id='mesatarja'>Mesatarja e ponderuar: ".$mesatarja."</h5>";
             }
             
         ?>
     </div>
 </div>
-<div class="container ">
-    <div id="logout">
-        <button  class="btn btn-dark " ><a href="log_out.php">LogOut</a></button>
-    </div>
+<div class="container">
+  <button  class="btn btn-primary bt1" ><a class="abtt" href="log_out.php">LogOut</a></button>
+  <button  class="btn btn-primary bt1" ><a class="abtt" href="settings.php">Settings</a></button>
 </div>
-
-
-<br>
-
    <?php
     include 'footer.php';
     ?>
