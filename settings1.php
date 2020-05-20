@@ -70,6 +70,37 @@ include 'db_connection.php';
 
        }
         }
+
+
+        if(isset($_POST['ndrysho_p'])){
+
+            if(empty($_POST['pershkrim'])){
+                header('location:settings.php');
+                    $_SESSION['response']="Ju lutem vendosni pershkrimin.";
+                    $_SESSION['res_type']="danger";
+            }
+            else{
+                $pershkrim=$_POST['pershkrim'];
+                $id=$_SESSION['id'];
+
+
+                $sql=sprintf("UPDATE pedagog 
+                      SET pedagog.pershkrim='%s'
+                      WHERE pedagog.id_pedagog_fk=$id",$pershkrim);
+
+                if(mysqli_query($conn,$sql)){
+                    header('location:settings.php');
+                    $_SESSION['response']="Ndryshimi u krye.";
+                    $_SESSION['res_type']="success";
+                }
+                else{
+                    header('location:settings.php');
+                    $_SESSION['response']="Ndryshimi nuk mundi te kryhet.".mysqli_error($conn);
+                    $_SESSION['res_type']="danger";
+                }
+
+            }
+        }
         
 
        

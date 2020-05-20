@@ -37,15 +37,31 @@
        <div class="row">
             <form method='POST' action="settings1.php">
             Vendosni password-in aktual:<br>
-            <input type="text" id='passvj' name="pasi_vjeter"><br>
+            <input type="password" id='passvj' name="pasi_vjeter"><br>
             Vendosni password-in e ri:<br>
-            <input type='text' id='passri' name='pasi_ri'><br>
+            <input type='password' id='passri' name='pasi_ri'><br>
             Konfirmoni password-in e ri:<br>
-            <input type='text' id='passrikonf' name='pasi_ri_konf'><br><br>
+            <input type='password' id='passrikonf' name='pasi_ri_konf'><br><br>
             <input type='submit' value='Ndrysho'name='ndrysho' ><br><br>
             </form>
         </div>
         
+    </div>
+
+    <div class="container">
+        <div class="row">
+           <?php
+
+              $roli=$_SESSION["roli"];
+              if($roli==1){
+                  echo "<form method='POST' action='settings1.php'>";
+                  echo "Ndryshoni pershkrimin tuaj: <br>";
+                  echo "<input type='text' id='pershkrim' name='pershkrim'><br>";
+                  echo "<input type='submit' value='Ndrysho Pershkrim' name='ndrysho_p' ><br>";
+                  echo "</form>";
+              }
+           ?>
+        </div>
     </div>
 
     <div>
