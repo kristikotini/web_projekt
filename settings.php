@@ -35,43 +35,28 @@
     </div>
    <div class="container">
        <div class="row">
-            <form method='POST' action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+            <form method='POST' action="settings1.php">
             Vendosni password-in aktual:<br>
             <input type="text" id='passvj' name="pasi_vjeter"><br>
             Vendosni password-in e ri:<br>
             <input type='text' id='passri' name='pasi_ri'><br>
             Konfirmoni password-in e ri:<br>
             <input type='text' id='passrikonf' name='pasi_ri_konf'><br><br>
-            <input type='submit' value='Ndrysho' ><br><br>
+            <input type='submit' value='Ndrysho'name='ndrysho' ><br><br>
             </form>
         </div>
+        
     </div>
 
-    <?php
-         $id=$_SESSION["id"];
-         if ($_SERVER["REQUEST_METHOD"] == "POST"){
-            $pv= $_POST["pasi_vjeter"];
-            $sql1="SELECT password
-            FROM perdorues
-            WHERE perdorues.perdorues_id=$id";
-            $result1=mysqli_query($conn,$sql1);
-
-            if(empty($_POST["inputPassword"])){
-                header('location:settings.php');
-                    $_SESSION['response']="Please enter your password.";
-                    $_SESSION['res_type']="success";
-            }
-
-            while($row=mysqli_fetch_array($result1,MYSQLI_ASSOC)){
-             if($row!='' && $row!=$pv){
-              echo "<p>pasii gabim</p>";
-            }
-        }
-         }
-
-         
-    ?>
-    
+    <div>
+        <?php if (isset($_SESSION['response'])){ ?>
+        <div class="alert alert-<?= $_SESSION['res_type'];  ?> alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert">&times;
+        </button>
+        <?= $_SESSION['response']; ?>
+        </div>
+        <?php } unset($_SESSION['response']); ?>
+    </div>
 
 <?php
     include 'footer.php';
