@@ -21,22 +21,27 @@
                 <ul class="list-unstyled ">
                     <li>
                         <p>
-                            <a class="footer-links" href="#!">HISTORIA</a>
+                            <a class="footer-links" href="about.php#misioni">MISIONI</a>
                         </p>
                     </li>
                     <li>
                         <p>
-                            <a class="footer-links" href="#!">PROJEKTE</a>
+                            <a class="footer-links" href="about.php#projekte">PROJEKTE</a>
                         </p>
                     </li>
                     <li>
                         <p>
-                            <a class="footer-links" href="#!">ARRITJE</a>
+                            <a class="footer-links" href="about.php#objektivat">OBJEKTIVAT</a>
                         </p>
                     </li>
                     <li>
                         <p>
-                            <a class="footer-links" href="#!">HARTA</a>
+                            <a class="footer-links" href="about.php#stafi">STAFI</a>
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <a class="footer-links" href="about.php#harta">HARTA</a>
                         </p>
                     </li>
                 </ul>
