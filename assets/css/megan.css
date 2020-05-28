@@ -1,10 +1,18 @@
+html, body {
+    height: 100%;
+    
+}
+
+
 #mesatarja{
     text-align: right;
+    padding: 7px 0px;
 }
 .bt1{
     background-color: #8E040E;
     border-color: #8E040E;
     size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 .bt1:hover{
     background-color: #b1040e;
@@ -12,4 +20,8 @@
 }
 .abtt{
     color: white;
+}
+#ylli{
+    color: #8E040E;
+    font-size: 20px;
 }
