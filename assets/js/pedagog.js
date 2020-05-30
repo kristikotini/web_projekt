@@ -31,13 +31,13 @@ $(document).ready(function(){
 
   //grada
   $(document).ready(function(){
-    $("#grada").mouseenter(function(){
+    $("#gradaa").mouseenter(function(){
       $("#grada1").animate({
         fontSize: '+=3px'
       },"slow");
     
     });
-    $("#grada").mouseleave(function(){
+    $("#gradaa").mouseleave(function(){
       $("#grada1").animate({
         fontSize: '-=3px'
       },"slow");
@@ -152,5 +152,19 @@ $(document).ready(function(){
   $(".prog").click(function(){
     $("#mastel").slideDown("slow");
     $("#bachel").slideDown("slow");
+  });
+});
+
+
+//nota#
+$(document).ready(function(){
+  $("#flip").click(function(){
+    $("#panel").slideDown("slow");
+  });
+});
+
+$(document).ready(function(){
+  $("#flip1").click(function(){
+    $("#panel1").slideDown("slow");
   });
 });
