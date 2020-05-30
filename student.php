@@ -40,8 +40,8 @@
 <div class="container text-center">
 
 <div class="col-md-4 float-right">
-  <button  class="btn btn-primary bt1" ><a class="abtt" href="log_out.php">Logout</a></button>
-  <button  class="btn btn-primary bt1" ><a class="abtt" href="settings.php">Settings</a></button>
+  <button  class="btn btn-primary bt1"  onclick="window.location.href='log_out.php'">Logout</button>
+  <button  class="btn btn-primary bt1" onclick="window.location.href='settings.php'">Settings</button>
  
   </div>
     <div class="row">
@@ -98,16 +98,7 @@
     </div>
 </div>
 
-<?php
-   function  fshi ($viti_st,$lendetarr,$i){
-       if($viti_st<$lendetarr[$i][1]){
-           echo "<tr style='background-color:lightgrey'>";
-       }
-       else{
-           echo "<tr>";
-       }
-   }
-   ?>
+
     
 <div class="container text-center">
     <div id="tab_nota">
@@ -172,7 +163,7 @@
 
               for($i=$vazhd;$i<sizeof($lendetarr);$i++){
                   
-                fshi ($viti_st,$lendetarr,$i);
+                echo "<tr>";
                   for($j=0;$j<sizeof($lendetarr[0]);$j++){
                       echo "<td>";
                       if($lendetarr[$i][$j]=='')echo "-";
@@ -205,7 +196,7 @@
     
                   for($i=$vazhd;$i<sizeof($lendetarr);$i++){
                       
-                    fshi ($viti_st,$lendetarr,$i);
+                    echo "<tr>";
                       for($j=0;$j<sizeof($lendetarr[0]);$j++){
                           echo "<td>";
                       if($lendetarr[$i][$j]=='')echo "-";
@@ -221,11 +212,9 @@
            
         ?>
     </div>
-</div>
 
-<div class="container">
-
-    </div  >
+    <div class='row'>
+    <div class="col-md-12 float-right">
         <?php
             $mesatarja;
             $shuma=0;
@@ -239,15 +228,26 @@
 
             if($kredite>0){
                 $mesatarja=$shuma/$kredite;
-                echo "<h5 id='mesatarja' class=' text-dark mt-2'>Mesatarja e ponderuar: ".$mesatarja."</h5>";
+                $mesatarja=round($mesatarja,3);
+                echo " <table class='table '>";
+                    echo "<thead class='thead-dark float-right'>";
+                    echo "<tr>";
+                    echo "<th>";
+                echo "Mesatarja e ponderuar: ".$mesatarja;
+                echo "</th>";
+                echo "</tr>";
+                echo "</thead>";
+                echo "</table>";
             }
             
         ?>
+        </div>
     </div>
+    </div> 
 </div>
-<div class="container">
 
-</div>
+
+<div>
    <?php
     include 'footer.php';
     ?>

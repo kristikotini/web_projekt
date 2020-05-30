@@ -61,6 +61,26 @@
                   echo "<input type='submit' value='Ndrysho Pershkrim' name='ndrysho_p' class='btn btn-primary bt1'><br>";
                   echo "</form>";
                   echo "</div>";
+                  ?>
+                  </div>
+                  <div class='row'>
+                  <div class='form-group'>
+                <form action="settings1.php" method="post" enctype="multipart/form-data">
+                    <label>Ndryshoni foton e profilit:<span id='ylli'>*</span></label><br>
+                    <input type="file" name="fileToUpload" id="fileToUpload"class="form-control-file border" required><br>
+                    <input type="submit" value="Ndrysho Foto" name="ndrysho_foto" class='btn btn-primary bt1'>
+                </form>
+
+                </div>
+                </div>
+                <div class='row'>
+                <div class='form-group'>
+                <form action="settings1.php" method="post" enctype="multipart/form-data">
+                <input type="submit" value="Fshi Foto" name="fshi_foto" class='btn btn-primary bt1'>
+                </form>
+                </div>
+                </div>
+            <?php
               }
            ?>
            </div>
