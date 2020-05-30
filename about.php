@@ -24,6 +24,7 @@
 
     <body>
     <?php
+        session_start();
         include 'header.php';
     ?>
     <div class="container my-5 py-5 z-depth-1">

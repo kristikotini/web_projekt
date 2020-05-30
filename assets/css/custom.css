@@ -60,6 +60,16 @@ a:hover{
     background-color: #b1040e;
     border-color: #b1040e;
 }
+.btn-lajme{
+    background-color: #8E040E;
+    border-color: #8E040E;
+    color: white;
+}
+.btn-lajme:hover{
+    background-color: #b1040e;
+    border-color: #b1040e;
+    color: white;
+}
 .navbar-mask{
     height: 56px;
 }

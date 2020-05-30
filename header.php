@@ -16,30 +16,13 @@
                 <a class="nav-link" href="index.php">Kryefaqe <span class="sr-only">(current)</span></a> 
             </li> 
             <li class="nav-item"> 
-                <a class="nav-link" href="#">Lajme</a> 
+                <a class="nav-link" href="news.php">Lajme</a> 
             </li> 
             <li class="nav-item"> 
                 <a class="nav-link" href="about.php">Rreth Nesh</a> 
             </li> 
-            <li class="nav-item dropdown "> 
-                <a class="nav-link dropdown-toggle" href="#" type="button" data-toggle="dropdown">Programe</a>
-                <span class="caret"></span></button>
-                <ul class="dropdown-menu">
-                    <li class="dropdown-submenu dropright">
-                        <a class="dropdown-item test" href="#">Bachelor <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Informatik</a></li>
-                            <li><a class="dropdown-item" href="#">TIK</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown-submenu dropright">
-                        <a class="dropdown-item test" href="#">Master <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Informatik MSc.</a></li>
-                            <li><a class="dropdown-item" href="#">TIK MSc.</a></li>
-                        </ul>
-                    </li>
-                </ul>
+            <li class="nav-item"> 
+                <a class="nav-link" href="#" type="button" data-toggle="dropdown">Programe</a>
             </li> 
             <li class="nav-item"> 
                 <?php
@@ -67,12 +50,3 @@
         </form> 
     </div> 
 </nav> 
-<script>
-$(document).ready(function(){
-  $('.dropdown-submenu a.test').on("click", function(e){
-    $(this).next('ul').toggle();
-    e.stopPropagation();
-    e.preventDefault();
-  });
-});
-</script>

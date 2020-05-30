@@ -24,7 +24,7 @@
             }
             
             echo('
-            <div class="col-md-4">
+            <div class="col-md-4" style="width:800px">
                     <!--Card-->
                     <div class="card testimonial-card" style="width: 350px; margin-top: 30px;">
                     <!--Background color-->
