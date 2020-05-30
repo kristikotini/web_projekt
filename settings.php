@@ -44,7 +44,7 @@
             <input type='password' id='passri' name='pasi_ri' required><br>
             <label>Konfirmoni password-in e ri:<span id='ylli'>*</span></label><br>
             <input type='password' id='passrikonf' name='pasi_ri_konf' required><br><br>
-            <input type='submit' value='Ndrysho Password'name='ndrysho' class="btn btn-primary bt1"><br>
+            <input type='submit' value='Ndrysho Password'name='ndrysho' class="btn btn-primary bt1" style='width:170px;'><br>
             </form>
 
         </div>
@@ -58,7 +58,7 @@
                   echo "<form method='POST' action='settings1.php'>";
                   echo "<label>Ndryshoni pershkrimin tuaj:<span id='ylli'>*</span></label> <br>";
                   echo "<textarea name='pershkrim' rows='3' cols='50' required></textarea><br><br>";
-                  echo "<input type='submit' value='Ndrysho Pershkrim' name='ndrysho_p' class='btn btn-primary bt1'><br>";
+                  echo "<input type='submit' value='Ndrysho Pershkrim' name='ndrysho_p' class='btn btn-primary bt1' style='width:170px;'><br>";
                   echo "</form>";
                   echo "</div>";
                   ?>
@@ -68,15 +68,16 @@
                 <form action="settings1.php" method="post" enctype="multipart/form-data">
                     <label>Ndryshoni foton e profilit:<span id='ylli'>*</span></label><br>
                     <input type="file" name="fileToUpload" id="fileToUpload"class="form-control-file border" required><br>
-                    <input type="submit" value="Ndrysho Foto" name="ndrysho_foto" class='btn btn-primary bt1'>
+                    <input type="submit" value="Ndrysho Foto" name="ndrysho_foto" class='btn btn-primary bt1' style='width:170px;'>
                 </form>
 
                 </div>
                 </div>
                 <div class='row'>
                 <div class='form-group'>
+                <label>Ju mund te klikoni me poshte per te fshire foton tuaj:</label><br>
                 <form action="settings1.php" method="post" enctype="multipart/form-data">
-                <input type="submit" value="Fshi Foto" name="fshi_foto" class='btn btn-primary bt1'>
+                <input type="submit" value="Fshi Foto" name="fshi_foto" class='btn btn-primary bt1' style='width:170px;'>
                 </form>
                 </div>
                 </div>
