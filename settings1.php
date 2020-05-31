@@ -24,6 +24,7 @@ include 'db_connection.php';
         else{
             $id=$_SESSION["id"];
             $pv= $_POST["pasi_vjeter"];
+
             $pr=$_POST["pasi_ri"];
             $prk=$_POST["pasi_ri_konf"];
             
@@ -37,13 +38,12 @@ include 'db_connection.php';
                 $pasivj_db=$row["password"];
            }
            
-           $password_v = password_hash($pv, PASSWORD_DEFAULT);
-
-           if($password_v===$pasivj_db){
+           if(!password_verify ( $pv , $pasivj_db )){
             header('location:settings.php');
             $_SESSION['response']="Passwordi i vendosur nuk eshte i sakte.";
             $_SESSION['res_type']="danger";
            }
+           
            else if($pr!=$prk){
             header('location:settings.php');
             $_SESSION['response']="Ju lutem vendosni sakte passwordin e ri ne fushat e kerkuara.";
@@ -51,19 +51,26 @@ include 'db_connection.php';
            }
            else{
                $pasi_ri_db=password_hash($pr, PASSWORD_DEFAULT);
+              if($sql= mysqli_prepare($conn, "UPDATE perdorues SET perdorues.password=? WHERE perdorues.perdorues_id=$id")) 
+                {
+                    mysqli_stmt_bind_param($sql, "s", $pasi_ri_db);
+                    if(mysqli_stmt_execute($sql)){
+                        header('location:settings.php');
+                        $_SESSION['response']="Ndryshimi u krye.";
+                        $_SESSION['res_type']="success";
+                    }
+                    else{
+                        header('location:settings.php');
+                        $_SESSION['response']="Ndryshimi nuk mundi te kryhet.";
+                        $_SESSION['res_type']="danger";
+                    }
+                    mysqli_stmt_close($sql);
 
-               $sql=sprintf("UPDATE perdorues 
-                      SET perdorues.password='%s'
-                      WHERE perdorues.perdorues_id=$id",$pasi_ri_db);
-
-            if(mysqli_query($conn,$sql)){
-                header('location:settings.php');
-                $_SESSION['response']="Ndryshimi u krye.";
-                $_SESSION['res_type']="success";
-            }
+                }
+              
             else{
                 header('location:settings.php');
-                $_SESSION['response']="Ndryshimi nuk mundi te kryhet.".mysqli_error($conn);
+                $_SESSION['response']="Ndryshimi nuk mundi te kryhet.";
                 $_SESSION['res_type']="danger";
             }
            }
@@ -82,20 +89,27 @@ include 'db_connection.php';
             else{
                 $pershkrim=$_POST['pershkrim'];
                 $id=$_SESSION['id'];
+                if($sql= mysqli_prepare($conn, "UPDATE pedagog SET pedagog.pershkrim=? WHERE pedagog.id_pedagog_fk=$id")) 
+                {
+                    mysqli_stmt_bind_param($sql, "s", $pershkrim);
+                    if(mysqli_stmt_execute($sql)){
+                        header('location:settings.php');
+                        $_SESSION['response']="Ndryshimi u krye.";
+                        $_SESSION['res_type']="success";
+                    }
+                    else{
+                        header('location:settings.php');
+                        $_SESSION['response']="Ndryshimi nuk mundi te kryhet.";
+                        $_SESSION['res_type']="danger";
+                    }
+                    mysqli_stmt_close($sql);
 
-
-                $sql=sprintf("UPDATE pedagog 
-                      SET pedagog.pershkrim='%s'
-                      WHERE pedagog.id_pedagog_fk=$id",$pershkrim);
-
-                if(mysqli_query($conn,$sql)){
-                    header('location:settings.php');
-                    $_SESSION['response']="Ndryshimi u krye.";
-                    $_SESSION['res_type']="success";
                 }
+
+              
                 else{
                     header('location:settings.php');
-                    $_SESSION['response']="Ndryshimi nuk mundi te kryhet.".mysqli_error($conn);
+                    $_SESSION['response']="Ndryshimi nuk mundi te kryhet.";
                     $_SESSION['res_type']="danger";
                 }
 
@@ -117,7 +131,6 @@ include 'db_connection.php';
             $target_dir = 'assets/images/foto-pedagog/';
             $target_file = $target_dir.$emri.$mbiemri.'.jpg';
             $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-            #$target_file = $target_dir.($_FILES["fileToUpload"]["name"],$emri.$mbiemri.'.'.$imageFileType);
             $uploadOk = 1;
 
             $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);

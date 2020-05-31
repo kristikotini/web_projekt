@@ -136,7 +136,12 @@
                 echo "<tr>";
                   for($j=0;$j<sizeof($lendetarr[0]);$j++){
                       echo "<td>";
-                      if($lendetarr[$i][$j]=='')echo "-";
+                      if($j==4){
+                        if($lendetarr[$i][4]=='')echo "-";
+                        else if($lendetarr[$i][4]<5) echo "<h6 style='color: red'>".$lendetarr[$i][$j]."</h6>";
+                        else echo $lendetarr[$i][4];
+                    }
+                        else
                       echo $lendetarr[$i][$j];
                       echo "</td>";
                   }
@@ -166,7 +171,12 @@
                 echo "<tr>";
                   for($j=0;$j<sizeof($lendetarr[0]);$j++){
                       echo "<td>";
-                      if($lendetarr[$i][$j]=='')echo "-";
+                      if($j==4){
+                        if($lendetarr[$i][4]=='')echo "-";
+                        else if($lendetarr[$i][4]<5) echo "<p style='color: red'>".$lendetarr[$i][$j]."</p>";
+                        else echo $lendetarr[$i][4];
+                    }
+                        else
                       echo $lendetarr[$i][$j];
                       echo "</td>";
                   }
@@ -199,7 +209,13 @@
                     echo "<tr>";
                       for($j=0;$j<sizeof($lendetarr[0]);$j++){
                           echo "<td>";
-                      if($lendetarr[$i][$j]=='')echo "-";
+                      
+                       if($j==4){
+                        if($lendetarr[$i][4]=='')echo "-";
+                        else if($lendetarr[$i][4]<5) echo "<p style='color: red'>".$lendetarr[$i][$j]."</p>";
+                        else echo $lendetarr[$i][4];
+                    }
+                    else
                           echo $lendetarr[$i][$j];
                           echo "</td>";
                       }
@@ -220,7 +236,7 @@
             $shuma=0;
             $kredite=0;
             for($i=1;$i<sizeof($lendetarr);$i++){
-                if($lendetarr[$i][4]!=""){
+                if($lendetarr[$i][4]!="" && $lendetarr[$i][4]>4){
                     $shuma=$shuma+($lendetarr[$i][2]*$lendetarr[$i][4]);
                     $kredite+=$lendetarr[$i][2];
                 }
