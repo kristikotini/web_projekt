@@ -1,6 +1,6 @@
 <?php
     $directory = 'lajme';
-    $scanned_directory = array_diff(scandir($directory), array('..', '.'));
+    $scanned_directory = array_diff(scandir($directory,1), array('..', '.'));
     foreach ($scanned_directory as $news) {
         $myfile = fopen($directory.'/'.$news.'', "r") or die("Unable to open file!");
         $row = 1;
