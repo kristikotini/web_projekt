@@ -35,7 +35,7 @@
                     </div>
                     <div class="card-body">
                         <!--Name-->
-                        <a class="stafi-links" href="pedagog.php?emri='.$emri.'&mbiemri='.$mbiemri.'"><h4 class="font-weight-bold mb-4">'.$emri.' '.$mbiemri.'</h4></a>
+                        <a class="stafi-links" href="pedagog_info.php?emri='.$emri.'&mbiemri='.$mbiemri.'"><h4 class="font-weight-bold mb-4">'.$emri.' '.$mbiemri.'</h4></a>
                         <hr>
                         <!--Quotation-->
                         <p class="dark-grey-text mt-4">'.$row['grada'].'</p>
