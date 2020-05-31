@@ -155,7 +155,7 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION["
             </div>
       <!--Submit Button-->
             <div class="form-group">
-            <input type="submit" name="edit" class="btn btn-success btn-block" value="Ruaj të dhënat e ndryshuara">
+            <input type="submit" name="edit" class="btn btn-success btn-block btn-login" value="Ruaj të dhënat e ndryshuara">
             </div>
       <script>
               $(document).ready(function() {
@@ -301,7 +301,7 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION["
             </div>
       <!--Submit Button-->
             <div class="form-group">
-            <input type="submit" name="add" class="btn btn-primary btn-block" value="Shto perdorues">
+            <input type="submit" name="add" class="btn btn-primary btn-block btn-login" value="Shto perdorues">
             </div>
       <script>
               $(document).ready(function() {

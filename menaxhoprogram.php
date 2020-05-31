@@ -85,7 +85,7 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION["
                         </div>
                      <!--Submit Button-->
                           <div class="form-group">
-                          <input type="submit" name="add" class="btn btn-primary btn-block" value="Shto program">
+                          <input type="submit" name="add" class="btn btn-primary btn-block btn-login" value="Shto program">
                           </div>
                           </div>  
                         
