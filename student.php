@@ -34,9 +34,16 @@
     include 'header.php';
     include 'db_connection.php';
     ?>
-<br>
 
+
+<br>
 <div class="container text-center">
+
+<div class="col-md-4 float-right">
+  <button  class="btn btn-primary bt1"  onclick="window.location.href='log_out.php'">Logout</button>
+  <button  class="btn btn-primary bt1" onclick="window.location.href='settings.php'">Settings</button>
+ 
+  </div>
     <div class="row">
      
         <div id="te_dhena">
@@ -68,7 +75,7 @@
         <div class="col-md-10 float-right">
         <?php
 
-            echo "<h2>".$emri." ".$mbiemri."</h2>";
+            echo "<h2 class='text-center text-dark mt-2'>".$emri." ".$mbiemri."</h2>";
 
 
             $sql2="SELECT grupi,data_regjistrim,program.emer,program.nivel,viti_std,id_programi_fk
@@ -78,9 +85,10 @@
             $result2=mysqli_query($conn,$sql2);
         
             while($row=mysqli_fetch_array($result2,MYSQLI_ASSOC)){
-                echo "<h6>Grupi: ".$row["grupi"].", "."Regjistruar me: ".
+                echo "<h6 class='text-center text-dark mt-2'>Grupi: ".$row["grupi"].", "."Regjistruar me: ".
                 $row["data_regjistrim"].", ".$row["emer"].", ".$row["nivel"].", Ne vitin: ". $row["viti_std"]."</h6>";
                 $program=$row["id_programi_fk"];
+                $viti_st=$row["viti_std"];
             }
 
         ?> 
@@ -89,10 +97,12 @@
         
     </div>
 </div>
+
+
     
 <div class="container text-center">
     <div id="tab_nota">
-        <h3>Struktura akademike</h3>
+        <h3 class='text-center text-dark mt-2'>Struktura Akademike</h3>
         <?php
         $akm=1;
             $sql3="SELECT emer,viti_lendes,kredite,kohezgjatja,nota.nota
@@ -103,7 +113,7 @@
             $result3=mysqli_query($conn,$sql3);
 
             $lendetarr=array();
-            echo "<h4>Viti i pare</h4>";
+            echo "<h4 class='text-center text-dark mt-2'>Viti i pare</h4>";
             array_push($lendetarr,array("Emri i lendes","Viti","Kredite","Kohezgjatja","Nota"));
 
             while($row=mysqli_fetch_array($result3,MYSQLI_BOTH)){
@@ -123,9 +133,10 @@
 
               for($i=1;$i<sizeof($lendetarr);$i++){
                   
-                  echo "<tr>";
+                echo "<tr>";
                   for($j=0;$j<sizeof($lendetarr[0]);$j++){
                       echo "<td>";
+                      if($lendetarr[$i][$j]=='')echo "-";
                       echo $lendetarr[$i][$j];
                       echo "</td>";
                   }
@@ -137,7 +148,7 @@
               }
             echo "</table>";
 
-            echo "<h4>Viti i dyte</h4>";
+            echo "<h4 class='text-center text-dark mt-2'>Viti i dyte</h4>";
 
             echo " <table class='table '>";
                 echo "<thead class='thead-dark'>";
@@ -152,9 +163,10 @@
 
               for($i=$vazhd;$i<sizeof($lendetarr);$i++){
                   
-                  echo "<tr>";
+                echo "<tr>";
                   for($j=0;$j<sizeof($lendetarr[0]);$j++){
                       echo "<td>";
+                      if($lendetarr[$i][$j]=='')echo "-";
                       echo $lendetarr[$i][$j];
                       echo "</td>";
                   }
@@ -169,7 +181,7 @@
 
             if($akm==0){
 
-                echo "<h4>Viti i trete</h4>";
+                echo "<h4 class='text-center text-dark mt-2'>Viti i trete</h4>";
 
                 echo " <table class='table '>";
                     echo "<thead class='thead-dark'>";
@@ -184,9 +196,10 @@
     
                   for($i=$vazhd;$i<sizeof($lendetarr);$i++){
                       
-                      echo "<tr>";
+                    echo "<tr>";
                       for($j=0;$j<sizeof($lendetarr[0]);$j++){
                           echo "<td>";
+                      if($lendetarr[$i][$j]=='')echo "-";
                           echo $lendetarr[$i][$j];
                           echo "</td>";
                       }
@@ -199,11 +212,9 @@
            
         ?>
     </div>
-</div>
 
-<div class="container">
-
-    </div  >
+    <div class='row'>
+    <div class="col-md-12 float-right">
         <?php
             $mesatarja;
             $shuma=0;
@@ -217,18 +228,30 @@
 
             if($kredite>0){
                 $mesatarja=$shuma/$kredite;
-                echo "<h5 id='mesatarja'>Mesatarja e ponderuar: ".$mesatarja."</h5>";
+                $mesatarja=round($mesatarja,3);
+                echo " <table class='table '>";
+                    echo "<thead class='thead-dark float-right'>";
+                    echo "<tr>";
+                    echo "<th>";
+                echo "Mesatarja e ponderuar: ".$mesatarja;
+                echo "</th>";
+                echo "</tr>";
+                echo "</thead>";
+                echo "</table>";
             }
             
         ?>
+        </div>
     </div>
+    </div> 
 </div>
-<div class="container">
-  <button  class="btn btn-primary bt1" ><a class="abtt" href="log_out.php">LogOut</a></button>
-  <button  class="btn btn-primary bt1" ><a class="abtt" href="settings.php">Settings</a></button>
-</div>
+
+
+<div>
    <?php
     include 'footer.php';
     ?>
+
+</div>
    </body>
-   </html>
+</html>

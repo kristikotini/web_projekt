@@ -60,6 +60,16 @@ a:hover{
     background-color: #b1040e;
     border-color: #b1040e;
 }
+.btn-lajme{
+    background-color: #8E040E;
+    border-color: #8E040E;
+    color: white;
+}
+.btn-lajme:hover{
+    background-color: #b1040e;
+    border-color: #b1040e;
+    color: white;
+}
 .navbar-mask{
     height: 56px;
 }
@@ -72,6 +82,20 @@ a:hover{
     background-color: rgba(0,0,0,0.5);
     color:white;
     font-weight: bold;
+}
+.misioni{
+    padding: 40px;
+    text-align: center;
+}
+.map{
+    height: 500px;
+    padding: 3px;
+}
+.stafi-links{
+    color: #8E040E;
+}
+.stafi-links:hover{
+    color: black !important;
 }
 
 /*---Media Queries --*/

@@ -102,6 +102,77 @@ include 'db_connection.php';
             }
         }
         
+        
+        if(isset($_POST['ndrysho_foto'])){
+            
+            $id=$_SESSION["id"];
+            $sql4 = "SELECT p.emer, p.mbiemer FROM perdorues p
+            WHERE p.perdorues_id = $id;";
+            $result4=mysqli_query($conn,$sql4);
+
+            while($row=mysqli_fetch_array($result4,MYSQLI_ASSOC)){
+                $emri=$row["emer"];
+                $mbiemri=$row["mbiemer"];
+            }
+            $target_dir = 'assets/images/foto-pedagog/';
+            $target_file = $target_dir.$emri.$mbiemri.'.jpg';
+            $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+            #$target_file = $target_dir.($_FILES["fileToUpload"]["name"],$emri.$mbiemri.'.'.$imageFileType);
+            $uploadOk = 1;
+
+            $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+            if($check !== false) {
+                $uploadOk = 1;
+            } else {
+                $uploadOk = 0;
+            }
+
+            if($imageFileType !='jpg'){
+                $uploadOk = 0;
+            }
+
+            if ($uploadOk == 0) {
+                    header('location:settings.php');
+                    $_SESSION['response']="Ndryshimi nuk mundi te kryhet.";
+                    $_SESSION['res_type']="danger";
+              } else {
+                if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+                    header('location:settings.php');
+                    $_SESSION['response']="Ndryshimi u krye.";
+                    $_SESSION['res_type']="success";
+                    
+                } else {
+                    header('location:settings.php');
+                    $_SESSION['response']="Ndryshimi nuk mundi te kryhet.";
+                    $_SESSION['res_type']="danger";
+                }
+              }
+
+        }
+        if(isset($_POST['fshi_foto'])){
+            $id=$_SESSION["id"];
+            $sql4 = "SELECT p.emer, p.mbiemer FROM perdorues p
+            WHERE p.perdorues_id = $id;";
+            $result4=mysqli_query($conn,$sql4);
+
+            while($row=mysqli_fetch_array($result4,MYSQLI_ASSOC)){
+                $emri=$row["emer"];
+                $mbiemri=$row["mbiemer"];
+            }
+            $target_dir = 'assets/images/foto-pedagog/';
+            $target_file = $target_dir.$emri.$mbiemri.'.jpg';
+            if (file_exists($target_file)) {
+                unlink($target_file);
+                header('location:settings.php');
+                $_SESSION['response']="Foto u fshi.";
+                $_SESSION['res_type']="success";
+              }
+              else{
+                header('location:settings.php');
+                $_SESSION['response']="Ju nuk keni foto.";
+                $_SESSION['res_type']="danger";
+              }
+        }
 
        
 
