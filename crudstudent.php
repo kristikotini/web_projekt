@@ -80,6 +80,41 @@ $flag1 = $conn->query($result1);
       }}
 
 
+      if(isset($_POST['edit'])){
+        $id = $_POST['user_id'];
+        $emer = $_POST['name'];
+        $mbiemer = $_POST['lastname'];
+        $email = $_POST['email'];
+        $grupi = $_POST['group'];
+        $data_regjistrimit = $_POST['regdate'];
+        $viti = $_POST['year'];
+        $id_programi = $_POST['programid'];
+        $niveli = $_POST['level'];
+        $result1 = sprintf(
+          "UPDATE perdorues
+          SET emer = '%s', mbiemer = '%s', email = '%s' 
+          WHERE perdorues_id=%s;",
+          $emer,$mbiemer,$email,$id
+        );
+        
+        $result2 = sprintf("UPDATE student SET grupi = '%s', data_regjistrim = '%s', viti_std = '%s', id_programi_fk = '%s', niveli = '%s' WHERE id_student_fk='%s';",$grupi,$data_regjistrimit,$viti,$id_programi,$niveli,$id
+        );
+      // die($result1);
+        $flag1 = $conn->query($result1);
+        $flag2 = $conn->query($result2);
+      
+        if($flag1 && $flag2){
+          $_SESSION['response']="Te dhënat u ruajtën me sukses!";
+          $_SESSION['res_type']="success";
+          header('location:menaxhostd.php?edit='.$id);
+        }else{
+          $_SESSION['response']="Pati nje problem! Të dhënat nuk u ruajtën. Sigurohuni që programi i vendosur ekziston.";
+          $_SESSION['res_type']="danger";
+          header('location:menaxhostd.php?edit='.$id);
+        }
+      }
+
+
       if(isset($_GET['delete'])){
         $id=$_GET['delete'];
         $deletestudent = "DELETE FROM student WHERE id_student_fk='$id'";
@@ -88,10 +123,13 @@ $flag1 = $conn->query($result1);
               $deleteperdorues = "DELETE FROM perdorues WHERE perdorues_id='$id'";
                 if($conn -> query($deleteperdorues)==TRUE){
                 header('location:menaxhostd.php');
-                $_SESSION['response']="Perdoruesi u fshi!";
-                $_SESSION['res_type']="danger"; }
+                $_SESSION['response']="Perdoruesi u fshi me sukses!";
+                $_SESSION['res_type']="success"; }
                 else {
-                  echo $conn->error;}
+                  header('location:menaxhostd.php');
+                  $_SESSION['response']="Pati një problem! Perdoruesi nuk u fshi.";
+                  $_SESSION['res_type']="danger";
+                  }
             }
          }
       else{
