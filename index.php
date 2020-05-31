@@ -20,7 +20,7 @@
     include 'header.php';
    ?>
     <!-- Banner -->
-    <img class="img-fluid home-banner" src="assets\images\uni-banner.jpg">
+    <img class="img-fluid home-banner" style="width: 100%;" src="assets\images\uni-banner.jpg">
     <!-- Main Body-->
     <!-- Slogan-->
     <div class="container my-5 py-5 z-depth-1">

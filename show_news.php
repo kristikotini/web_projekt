@@ -3,11 +3,12 @@
     $scanned_directory = array_diff(scandir($directory,1), array('..', '.'));
     foreach ($scanned_directory as $news) {
         $myfile = fopen($directory.'/'.$news.'', "r") or die("Unable to open file!");
-        $row = 1;
+        $row = 0;
         $p =1;
         while(!feof($myfile)) {
             $info =  fgets($myfile);
-            if($row ==1){
+            if($row == 0) {$data = $info;}
+            else if($row ==1){
                 echo(
                     '<div class="container mt-5">
                         <section class="">
@@ -18,14 +19,18 @@
             }else if($row ==2){
                 echo('<h1 class="font-weight-normal mb-4">'.$info.'</h1>');
             }else 
-                if ($p==1) {echo('<p>');  echo($info); $p++;}
-                else echo($info);
+                if($row == 10){
+                    echo('...');
+                break;
+                }
+                else if ($p==1) {echo('<p>');  echo($info); $p++;}
+                else {echo($info);}
             $row++;
           }
           fclose($myfile);
           echo(
             '                   </p>
-                                <a class="btn btn-outline-primary mx-0 btn-lajme" href="#">Read More <i class="fas fa-arrow-right fs-9 ml-2"></i></a>
+                                <a class="btn btn-outline-primary mx-0 btn-lajme" href="shiko_lajm.php?data='.$data.'">Read More <i class="fas fa-arrow-right fs-9 ml-2"></i></a>
                             </div>
                         </section>
                      </div> '

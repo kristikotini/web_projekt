@@ -1,43 +1,31 @@
-<!DOCTYPE html>
-    <html lang="en">
+<?php
+    if(isset($_GET["titulli"]) && isset($_GET["pershkrimi"])){
+        $titulli = htmlspecialchars($_GET["titulli"]);
+      $pershkrimi = htmlspecialchars($_GET["pershkrimi"]);
+      $pershkrimi = str_split($pershkrimi, 100);
+        $data1 =  date("Y-m-d_H-i-s");  
+        echo($data1 )  ;
+       $data2 =  "".date("d.m.Y");
+        $direc = 'lajme';
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Rreth Nesh</title>
-        <link rel="stylesheet" href="assets/css/bootstrap/bootstrap.css">
-        <script src="assets\js\jquery-3.4.1.min.js"></script>
-        <script src="assets\js\popper.min.js"></script>
-        <script src="assets\js\bootstrap.min.js"></script>
-        <script src="assets\fonts\all.min.js"></script>
-        <script src="assets/js/map.js"></script>
-        <link rel="stylesheet" href="assets\css\custom.css">
-        <link rel="stylesheet" href="assets/css/font-awesome/css/font-awesome.css">
-        <style>
-            #map {
-            height: 500px;
-            padding: 3px;
+        $file = 'lajme/'.$data1.'.txt';
+        $flag=true;
+        $tmp = 1;
+        while($flag){
+            if(!is_file($file)){
+                file_put_contents($file,  $data1.PHP_EOL);
+                file_put_contents($file, $data2.PHP_EOL,FILE_APPEND);
+                file_put_contents($file, $titulli.PHP_EOL,FILE_APPEND);
+                foreach ($pershkrimi as $s){
+                    file_put_contents($file, $s.PHP_EOL,FILE_APPEND);
+                }
+                $flag = false;
+            }else{
+                $file = 'lajme/'.$data1.'_'.$tmp.'txt';
+                $tmp ++;
+            }
         }
-        </style>
-        
-    </head>
+        header("location:news.php");
+    }
 
-    <body>
-    <?php
-        session_start();
-        include 'header.php';
-    ?>
-       <div class="form-group" style="width:500px">
-  <label for="exampleFormControlTextarea1">Pershkrimi</label>
-  <textarea class="form-control rounded-0" id="exampleFormControlTextarea1" rows="10"></textarea>
-</div>
-        
-        
-    <?php
-        include 'footer.php';
-    ?>
-</body>
-
-
-</html>
-
+?>
