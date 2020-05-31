@@ -18,35 +18,37 @@
   <?php
     require_once 'db_connection.php';
     session_start();
-    if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION["roli"]!=1){
-         
+    include "header.php";
+    if(!isset($_GET["emri"]) || !isset($_GET["mbiemri"])){
       header("location:index.php");
       exit();
   }
-  else if(!isset($_SESSION["loggedin"])){
-     header("location:index.php");
-     exit();
- }
-    include 'header.php';
+ 
   ?>
   <div class="container-fluid" >
     <div class="row">
       <div class="col-3" >
-      <?php
-
-          $id=$_SESSION['id'];
-
-          $sql="SELECT emer, mbiemer, gjini from perdorues where perdorues_id=$id ";
-      
+      <?php 
+           $emri=$_GET['emri'];
+           $mbiemri=$_GET['mbiemri'];
+          $sql="select gjini
+          from perdorues
+          where emer='".$emri."' and mbiemer='$mbiemri'";
           $result=$conn->query($sql);
           $row = $result->fetch_assoc();
-          $emri=$row['emer'];
-           $mbiemri=$row['mbiemer'];
+          $gjini = $row['gjini'];
+           unset($_GET['emri']);
+           unset($_GET['mbiemri']);
+
+          $sql="SELECT perdorues_id from perdorues where  emer='".$emri."' and mbiemer='".$mbiemri."';";
+
+          $result=$conn->query($sql);
+          $row = $result->fetch_assoc();
+          $id=$row['perdorues_id'];
             $file_pointer = 'assets/images/foto-pedagog/'.$emri.$mbiemri.'.jpg';
             if (file_exists($file_pointer)) {
                 $src = $file_pointer;
             }else {
-                $gjini=$row["gjini"];
                 if($gjini =='f'){
                     $src = 'assets\images\foto-pedagog\unknown-women.jpg';
                 }else $src = 'assets\images\foto-pedagog\unknown-men.jpg';
@@ -63,9 +65,8 @@
         ?>
         <div>
         <?php
-            $id=$_SESSION['id'];
 
-            $sql="SELECT pershkrim from pedagog where id_pedagog_fk=$id ";
+            $sql="SELECT pershkrim from pedagog where id_pedagog_fk=".$id.";";
         
             $result=$conn->query($sql);
             if ($result->num_rows > 0) {
@@ -85,8 +86,6 @@
             <li id="lenda" style="list-style-type: none;color: gainsboro; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-size: x-large;">Lendet</li>
            <div id="lendet" style="color:whitesmoke;list-style-type:square; ">
            <?php
-          
-            $id=$_SESSION['id'];
 
             $sql="SELECT DISTINCT l.emer from lenda l, mesimdhenia m where m.id_pedagog_fk=$id and l.id_lende=m.id_lende_fk";
         
@@ -130,8 +129,6 @@
       </div>
       <div class="col-9  pt-3 mt-5" >
           <?php
-            
-                $id=$_SESSION['id'];
 
                 $sql="SELECT grada, adresa, website, email, tel from perdorues,pedagog where (perdorues_id=$id and id_pedagog_fk=$id) ";
             
@@ -183,25 +180,14 @@
            </li>
           </div>
          </ul>
-         
-         
-
        </div>
-  
-              </div>
-              
-              <div class="pt-3 mt-3 " style="position: absolute; bottom: 0 ; right: 15px; color: whitesmoke;">
-              <a href="nota.php"><button  class="btn btn-primary bt1 btn-login"> Ngarko Nota</button></a>
-               <a href="log_out.php"><button class="btn btn-primary bt1 btn-login">Log out</button></a>
-               <button  class="btn btn-primary bt1 btn-login" onclick="window.location.href='settings.php'">Settings</button>
-                <a href="ndrysho_not.php"><button  class="btn btn-primary bt1 btn-login"> Ndrysho Note</button></a>
-              </div>
-
       </div>
 
     </div>
 
   </div>
+
+                </div>
   <?php
     include 'footer.php';
   ?>

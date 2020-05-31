@@ -13,7 +13,7 @@
     <script type="text/javascript" src="assets/js/pedagog.js"></script>
     <script src="assets\js\jquery-3.4.1.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <title>Document</title>
+    <title>Nota</title>
   
 </head>
 <body>
@@ -58,6 +58,7 @@
               include "shfaq_lende.php";
           ?>
       </select>
+      <input class="form-control" type="text" id="grupi" placeholder="Vendos Grupin" required>
       <div class="d-flex justify-content-around">
       </div>
       <!-- Gjenero button -->
@@ -76,30 +77,42 @@
 
     <script>
      var lende;
-
+     var grupi;
     $(document).ready(function(){
     $("#select").change(function(){
         lende = $(this).children("option:selected").val();
+        });
     });
-});
+    $(document).ready(function(){
+        $("#grupi").on("change keyup paste", function(){
+          grupi = $(this).val();
+        });
+        
+    });
      function krijoTab() {
        //alert(lende);
       if (typeof lende=="undefined") {
     alert ("Ju lutem zgjidhni nje lende.");
     return;
-  } else {
+  }else if(grupi == "" || typeof grupi=="undefined"){
+    alert ("Ju lutem zgjidhni nje grup.");
+    return;
+  } 
+  else {
     var xmlhttp = new XMLHttpRequest();
       xmlhttp.onload = function() {
       if (this.readyState == 4 && this.status == 200) {
        document.getElementById("tab").innerHTML=this.responseText;
       }
     }
-    xmlhttp.open("GET", "shfaq_tab.php?lende="+lende, true);
+    xmlhttp.open("GET", "shfaq_tab.php?lende="+lende+"&grupi="+grupi, true);
     xmlhttp.send();
   }
 } 
     
     </script>
+
+
 </body>
 </html>
 

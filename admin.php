@@ -1,3 +1,15 @@
+<?php include 'db_connection.php'; 
+session_start();
+if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION["roli"]!=0){
+
+header("location:index.php");
+exit();
+}
+else if(!isset($_SESSION["loggedin"])){
+header("location:index.php");
+exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">   
 <head>
@@ -87,18 +99,19 @@
     <div class="body">
         <div class="profile col-lg-3">
             <div class="photo">
-                <img src="https://president.al/wp-content/uploads/2018/04/sali-berisha.jpg" alt="bish">
+                <img src="https://img.icons8.com/bubbles/2x/system-administrator-female.png" alt="adm">
             </div>
             <div class="user-data">
-                <div class="line"><b>Emri:</b> Klaudia Musollari</div>
+                <div class="line"><b>Emri:</b> admin</div>
                 <div class="line"><b>Email:</b> admin@gmail.com</div>
-                <a class="btn btn-light settings" href="#">Settings</a>
+                <a class="btn btn-light settings" href="settings.php">Settings</a>
+                <a class="btn btn-light settings" href="log_out.php">Log Out</a>
             </div>
         </div>
         <div class="main col-lg-9">
             <div class="button-block">
-                <a href="#" class="btn link">Menaxho Program</a>
-                <a href="#" class="btn link">Menaxho Lëndë</a>
+                <a href="menaxhoprogram.php" class="btn link">Menaxho Program</a>
+                <a href="menaxholende.php" class="btn link">Menaxho Lëndë</a>
             </div>
             <div class="button-block">
                 <a href="menaxhopedagog.php" class="btn link">Menaxho Pedagog</a>

@@ -2,6 +2,18 @@
 include 'db_connection.php';
 include 'crudstudent.php';
 ?>
+<?php
+# session_start();
+if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION["roli"]!=0){
+
+  header("location:index.php");
+  exit();
+  }
+  else if(!isset($_SESSION["loggedin"])){
+  header("location:index.php");
+  exit();
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,9 +41,9 @@ include 'crudstudent.php';
 <div class="container-fluid">
        <div class="row justify-content-center">
         <div class="col-md-10">
-        <h5 class="text-center text-dark mt-2">
-            Ploteso te dhenat e meposhtme per te shtuar perdoruesin student
-        </h5><hr>
+        <h3 class="text-center text-dark mt-2">
+            Plotëso të dhënat e mëposhtme për të shtuar përdoruesin student
+        </h3><hr>
         <?php if (isset($_SESSION['response'])){ ?>
         <div class="alert alert-<?= $_SESSION['res_type'];  ?> alert-dismissible">
         <button type="button" class="close" data-dismiss="alert">&times;
@@ -43,7 +55,149 @@ include 'crudstudent.php';
        </div>
 <div class="row">
 <div class="col-md-4">
-<h5 class="text-center text-info">Shto perdorues student</h5>
+
+<?php if(isset( $_GET['edit'])):?>
+
+<?php
+  
+  $users = "SELECT u.*, s.* FROM perdorues as u JOIN student as s on s.id_student_fk = u.perdorues_id where u.perdorues_id = {$_GET['edit']}";
+  $usersresult = $conn->query($users);
+  while ($row = $usersresult->fetch_assoc()):
+?>
+
+<h5 class="text-center text-info">Ndrysho/Shiko te dhenat e <?=$row['emer'].' '.$row['mbiemer']?></h5>
+<form action="crudstudent.php" method="post" enctype="multipart/form-data">
+                     <!-- ID -->
+                        <input type="hidden" id="user_id" value="<?=$row['perdorues_id']?>" name="user_id" required>
+                    <!-- Emri -->
+                        <div class="form-group">
+                        <label for="name">Emër:</label>
+                        <input type="text" class="form-control" id="name" placeholder="Vendos Emër" value="<?=$row['emer']?>" name="name" required>
+                        </div>
+                    <!-- Mbiemri -->
+                        <div class="form-group">
+                        <label for="lastname">Mbiemër:</label>
+                        <input type="text" class="form-control" id="lastname" placeholder="Vendos Mbiemër" value="<?=$row['mbiemer']?>" name="lastname" required>
+                        </div>
+                   <!-- Gjinia -->
+                        <div class="form-group">
+                        <label for="gender">Gjinia:</label>
+                        <input type="text" class="form-control" id="gender" name="gender" value="<?=($row['gjini'] == 'm') ? 'Mashkull' : 'Femër'?>" readonly="">
+                        </div>
+                    <!-- Datelindja -->
+                        <div class="form-group">
+                        <label for="birthday">Datëlindja:</label>
+                        <input type="text" class="form-control" id="birthday" name="birthday" value="<?=$row['datelindje']?>" readonly="">
+                        </div>
+                    <!-- Username -->
+                        <div class="form-group">
+                        <label for="username">Username:</label>
+                        <input type="text" class="form-control" id="username" name="username" value="<?=$row['username']?>" readonly="">
+                        </div>
+                    <!-- Email -->
+                        <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="text" class="form-control" id="email" name="email" value="<?=$row['email']?>" required>
+                        </div>
+                   <!-- Roli -->
+                    <div class="form-group">
+                        <label for="roli">Roli:</label>
+                        <input type="text" class="form-control" id="roli" name="roli" value="Student" readonly="">
+                        </div>
+
+                  <!--FORMA PER STUDENTIN-->
+                      <!--Grupi--> 
+                          <div class="form-group" >
+                          <label for="group">Grupi:</label>
+                          <div class="form-check-inline">
+                          <label class="form-check-label">
+                          <input type="radio" class="form-check-input" name="group" value="A1" <?=($row['grupi'] == 'A1') ? 'checked="checked"' : ''?>required>A1
+                          </label>
+                          </div>
+                          <div class="form-check-inline">
+                          <label class="form-check-label">
+                          <input type="radio" class="form-check-input" value="A2"  name="group" <?=($row['grupi'] == 'A2') ? 'checked="checked"' : ''?> required>A2
+                          </label>
+                          </div>
+                          <div class="form-check-inline">
+                          <label class="form-check-label">
+                          <input type="radio" class="form-check-input" value="B1"  name="group" <?=($row['grupi'] == 'B1') ? 'checked="checked"' : ''?> required>B1
+                          </label>
+                          </div>
+                          <div class="form-check-inline">
+                          <label class="form-check-label">
+                          <input type="radio" class="form-check-input" value="B2"  name="group" <?=($row['grupi'] == 'B2') ? 'checked="checked"' : ''?> required>B2
+                          </label>
+                          </div>
+                          </div>
+                    <!--Data e regjistrimit-->
+                        <div class="form-group"> 
+                        <label for="date">Data e regjistrimit:</label>
+                        <input class="form-control" type="date" id="date" placeholder="MM/DD/VVVV"  name="regdate" value="<?=$row['data_regjistrim']?>" required/>
+                        </div>
+                    <!--Viti--> 
+                         <div class="form-group" >
+                          <label for="year">Viti:</label>
+                          <div class="form-check-inline">
+                          <label class="form-check-label">
+                          <input type="radio" class="form-check-input" name="year" value="1" <?=($row['viti_std'] == '1') ? 'checked="checked"' : ''?> required>1
+                          </label>
+                          </div>
+                          <div class="form-check-inline">
+                          <label class="form-check-label">
+                          <input type="radio" class="form-check-input" value="2"  name="year" <?=($row['viti_std'] == '2') ? 'checked="checked"' : ''?> required>2
+                          </label>
+                          </div>
+                          <div class="form-check-inline">
+                          <label class="form-check-label">
+                          <input type="radio" class="form-check-input" value="3"  name="year" <?=($row['viti_std'] == '3') ? 'checked="checked"' : ''?> required>3
+                          </label>
+                          </div>
+                          </div>
+                     <!--ID Programi-->    
+                          <div class="form-group">
+                          <label for="programid">ID Programi:</label>
+                          <input type="number" class="form-control" id="programid" placeholder="Vendos ID Programi"  name="programid" value="<?=$row['id_programi_fk']?>" required>
+                          </div>
+                    <!--Niveli--> 
+                         <div class="form-group" >
+                          <label for="level">Niveli:</label>
+                          <div class="form-check-inline">
+                          <label class="form-check-label">
+                          <input type="radio" class="form-check-input" name="level" value="Bachelor" <?=($row['niveli'] == 'Bachelor') ? 'checked="checked"' : ''?> required>Bachelor
+                          </label>
+                          </div>
+                          <div class="form-check-inline">
+                          <label class="form-check-label">
+                          <input type="radio" class="form-check-input" value="Master"  name="level" <?=($row['niveli'] == 'Master') ? 'checked="checked"' : ''?> required>Master
+                          </label>
+                          </div>
+                          </div>
+                    <!--Submit Button-->
+                          <div class="form-group">
+                          <input type="submit" name="edit" class="btn btn-success btn-block btn-login" value="Ruaj të dhënat e ndryshuara">
+                          </div>
+                          </div>  
+                           <script>
+                                    $(document).ready(function() {
+                                    $("#syri a").on('click', function(event) {
+                                    event.preventDefault();
+                                    if($('#syri input').attr("type") == "text"){
+                                    $('#syri input').attr('type', 'password');
+                                    $('#syri i').addClass( "fa-eye-slash" );
+                                    $('#syri i').removeClass( "fa-eye" );
+                                    }else if($('#syri input').attr("type") == "password"){
+                                    $('#syri input').attr('type', 'text');
+                                    $('#syri i').removeClass( "fa-eye-slash" );
+                                    $('#syri i').addClass( "fa-eye" );
+                                      }});});
+                            </script>
+</form>
+
+<?php endwhile; ?>
+  <?php else:?>
+
+<h5 class="text-center text-info">Shto përdorues student</h5>
 <form action="crudstudent.php" method="post" enctype="multipart/form-data">
                     <!-- Emri -->
                         <div class="form-group">
@@ -122,7 +276,7 @@ include 'crudstudent.php';
                   <!--FORMA PER STUDENTIN-->
                       <!--Grupi--> 
                           <div class="form-group" >
-                          <label for="grada">Grupi:</label>
+                          <label for="group">Grupi:</label>
                           <div class="form-check-inline">
                           <label class="form-check-label">
                           <input type="radio" class="form-check-input" name="group" value="A1" required>A1
@@ -151,7 +305,7 @@ include 'crudstudent.php';
                         </div>
                     <!--Viti--> 
                          <div class="form-group" >
-                          <label for="grada">Viti:</label>
+                          <label for="year">Viti:</label>
                           <div class="form-check-inline">
                           <label class="form-check-label">
                           <input type="radio" class="form-check-input" name="year" value="1" required>1
@@ -175,7 +329,7 @@ include 'crudstudent.php';
                           </div>
                     <!--Niveli--> 
                          <div class="form-group" >
-                          <label for="grada">Niveli:</label>
+                          <label for="level">Niveli:</label>
                           <div class="form-check-inline">
                           <label class="form-check-label">
                           <input type="radio" class="form-check-input" name="level" value="Bachelor" required>Bachelor
@@ -189,9 +343,10 @@ include 'crudstudent.php';
                           </div>
                     <!--Submit Button-->
                           <div class="form-group">
-                          <input type="submit" name="add" class="btn btn-primary btn-block" value="Shto perdorues">
+                          <input type="submit" name="add" class="btn btn-primary btn-block btn-login" value="Shto perdorues">
                           </div>
                           </div>  
+
                            <script>
                                     $(document).ready(function() {
                                     $("#syri a").on('click', function(event) {
@@ -208,10 +363,11 @@ include 'crudstudent.php';
                             </script>
 </form>
 
+<?php endif;?>
 
 
         <div class="col-md-8">
-        <h5 class="text-center text-info">Rekordet e databazes</h5>
+        <h5 class="text-center text-info">Rekordet e databazës</h5>
         <table class="table table-hover">
         <?php
       
@@ -227,9 +383,9 @@ include 'crudstudent.php';
         <td><?php echo $row["mbiemer"] ?></td>
         <td><?php echo $row["email"] ?></td>
         <td>
-        <a href="crudstudent.php?shikomeshume=<?php echo $row["perdorues_id"] ?>"  data-toggle="modal" data-target="#myModal" class="badge badge-primary p-2">Shiko më shumë</a> |
+        <a href="menaxhostd.php?edit=<?php echo $row["perdorues_id"] ?>"  class="badge badge-primary p-2">Shiko më shumë</a> |
             <a href="crudstudent.php?delete=<?php echo $row["perdorues_id"] ?>" class="badge badge-danger p-2">Delete</a> |
-            <a href="admin.php?edit=<?php echo $row["perdorues_id"] ?>"  class="badge badge-success p-2">Edit</a>
+            <a href="menaxhostd.php?edit=<?php echo $row["perdorues_id"] ?>"  class="badge badge-success p-2">Edit</a>
         </td>
       </tr>
     </tbody>   <?php  } } }  ?>
