@@ -1,0 +1,19 @@
+#panel {
+    display: none;
+  }
+  #panel1 {
+    display: none;
+  }
+
+
+  .but { 
+    background-color: white; 
+    border: 0px ; 
+    color: black; 
+    padding: 0px 0px; 
+    text-align: left; 
+    display: inline-block; 
+    font-size: 15px; 
+    margin: 0px 0px; 
+    cursor: pointer; 
+      } 
