@@ -19,6 +19,15 @@
     session_start();
     include 'header.php';
    ?>
+   
+   <?php if (isset($_SESSION['response'])){ ?>
+        <div class="alert alert-<?= $_SESSION['res_type'];  ?> alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert">&times;
+        </button>
+        <?= $_SESSION['response']; ?>
+        </div>
+        <?php } unset($_SESSION['response']); ?>
+
        <div class="container my-5 py-5 z-depth-1 mx-auto ">
             <section class="text-center px-md-5 mx-md-5 dark-grey-text flex-grow-1">
             <h1 class="font-weight-bold">Lajme dhe Evente</h1>

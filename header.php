@@ -22,7 +22,7 @@
                 <a class="nav-link" href="about.php">Rreth Nesh</a> 
             </li> 
             <li class="nav-item"> 
-                <a class="nav-link" href="#" type="button" data-toggle="dropdown">Programe</a>
+                <a class="nav-link" href="programe.php" type="button">Programe</a>
             </li> 
             <li class="nav-item"> 
                 <?php

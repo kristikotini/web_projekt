@@ -53,14 +53,14 @@ foreach( $emer as $key => $n ) {
   else{
  $_SESSION['response']="Sigurohuni që nuk ka ndodhur ndonje gabim gjate hedhjes se notave!";
  $_SESSION['res_type']="danger";
- header('location:nota1.php');
+ header('location:nota.php');
   }
  
  $res2 = $conn -> query($sql);  
  if(! $res2){
      $_SESSION['response']="Sigurohuni që nuk ka ndodhur ndonje gabim gjate hedhjes se notave!";
       $_SESSION['res_type']="danger";
-      header('location:nota1.php');
+      header('location:nota.php');
  }
 }
 }

@@ -294,7 +294,7 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION["
                           </div>
                           <div class="form-check-inline">
                           <label class="form-check-label">
-                          <input type="radio" class="form-check-input" value="B"  name="group" required>B1
+                          <input type="radio" class="form-check-input" value="B2"  name="group" required>B2
                           </label>
                           </div>
                           </div>

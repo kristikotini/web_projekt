@@ -39,7 +39,7 @@
 
   <!--Card content-->
   <div class="card-body px-lg-5 pt-0">
-    <form action="vep_ndryshimi.php" method="post">
+    <form action="vep_ndryshimi.php" method="post" autocomplete="off">
    <select class="browser-default custom-select mb-4" name="lenda_select" id="select" style="margin-top: 40px;">
           <option value="" disabled="" selected="">Zgjidh Lende</option>        
           <?php
@@ -48,9 +48,9 @@
       </select>
       <input class="form-control" type="text" id="emri" name='emri' placeholder="Vendos emrin e studentit" required><br>
       <input class="form-control" type="text" id="mbiemri" name='mbiemri' placeholder="Vendos mbiemrin e studentit" required><br>
-      <input class="form-control" type="number" id="nota" name='nota' placeholder="Vendos noten" required><br>
+      <input class="form-control" type="number" id="nota" name='nota' placeholder="Vendos noten" max="10" min="1" required><br>
       
-      <input type='submit' name='ndrysho_not' value='Ndrysho Noten' class='btn btn-primary bt1' style='width:170px;'>
+      <input type='submit' name='ndrysho_not' value='Ndrysho Noten' class='btn btn-primary bt1 btn-login' style='width:170px;'>
       </form>
 </div>
 </div>

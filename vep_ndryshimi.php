@@ -40,10 +40,11 @@ if(isset($_POST['ndrysho_not'])){
             $_SESSION['res_type']="danger";
         }
         else{
+        $nota_vjeter = $row['nota'];
         $sql2="UPDATE nota SET nota=$nota WHERE id_perdorues_fk=$id_student and id_lende_fk=$id_lende";
          if(mysqli_query($conn,$sql2)){
             header('location:ndrysho_not.php');
-            $_SESSION['response']="Nota u ndryshua.";
+            $_SESSION['response']="Nota u ndryshua nga ".$nota_vjeter." ne ".$nota.".";
             $_SESSION['res_type']="success";
         }
         else{

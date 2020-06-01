@@ -29,7 +29,7 @@
               $p =1;
               while(!feof($myfile)) {
                   $info =  fgets($myfile);
-                  if($row == 0) {}
+                  if($row == 0) {$artikulli = $info;}
                   else if($row ==1){
                       echo(
                           '<h4>'.$info.'</h4>'
@@ -42,9 +42,15 @@
                 fclose($myfile);
                 echo(
                   '                  </section>
-                  <!--Section: Content-->
-                  </div>'
-                );
+                  <!--Section: Content-->');
+                  if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION["roli"]==0){
+                    echo'<a href="fshi_artikull.php?artikulli='.$artikulli.'"> <button  class="btn btn-primary bt1 btn-login" >Fshi Artikull</button> </a>';
+     
+                  }
+                 echo' </div>';
+                
+              
+                
           }else header("location:news.php");
    ?>
 

@@ -85,14 +85,14 @@
                 <img class="d-block w-100" src="assets\images\foto1_car.jpg" alt="First slide">
                 <div class="carousel-caption d-none d-md-block carosel-item">
                     <h1>Godina</h1>
-                    <p>Nje godin e ndertuar ne vitin 2005, me nje arkitektur unike dhe me kushte komode.</p>
+                    <p>Nje godine e ndertuar ne vitin 2005, me nje arkitekture unike dhe me kushte komode.</p>
                 </div>
             </div>
             <div class="carousel-item">
                 <img class="d-block w-100" src="assets\images\foto2_car.jpg" alt="Second slide">
                 <div class="carousel-caption d-none d-md-block carosel-item">
                     <h1>Studentet</h1>
-                    <p>Studentet ne Universitetin tone jane mjaft perkrahes dhe gjithmon jane gati per te ndihmuar ne
+                    <p>Studentet ne Universitetin tone jane mjaft mikeprites dhe gjithmone jane gati per te ndihmuar ne
                         zgjidhjen e problemeve.</p>
                 </div>
 
@@ -100,15 +100,15 @@
             <div class="carousel-item">
                 <img class="d-block w-100" src="assets\images\foto3_car.jpg" alt="Third slide">
                 <div class="carousel-caption d-none d-md-block carosel-item">
-                    <h1>Laburatoret</h1>
-                    <p>Laburatore per zhvillimin e oreve mesimore ne kushte bashkohore.</p>
+                    <h1>Laboratoret</h1>
+                    <p>Laboratoret per zhvillimin e oreve mesimore ne kushte bashkohore.</p>
                 </div>
             </div>
             <div class="carousel-item">
-                <img class="d-block w-100" src="assets\images\foto4_car.jpg" alt="Third slide">
+                <img class="d-block w-100" src="assets\images\foto4_car.jpg" alt="Fourth slide">
                 <div class="carousel-caption d-none d-md-block carosel-item">
                     <h1>Stafi Pedagogeve</h1>
-                    <p>Nje staf i perkushtuar gjithmon i pergatitur per sfida te reja.</p>
+                    <p>Nje staf i perkushtuar gjithmone i pergatitur per sfida te reja.</p>
                 </div>
 
             </div>
